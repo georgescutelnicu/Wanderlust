@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
 
+
 db = SQLAlchemy()
 
 class Destination(db.Model):
@@ -33,6 +34,17 @@ class Destination(db.Model):
     popular_attractions = db.Column(db.String(500), nullable=True)
     picture = db.Column(db.String(500), nullable=True)
 
-
     def to_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        data = {'id': getattr(self, "id"),
+                'continent': getattr(self, "continent"),
+                'country': getattr(self, "country"),
+                'city': getattr(self, "city"),
+                'budget': getattr(self, "budget"),
+                'ratings': ({column.name: getattr(self, column.name) for column in self.__table__.columns
+                            if isinstance(column.type, db.Integer) and column.name != 'id'}),
+                'description': getattr(self, "description"),
+                'popular_attractions': getattr(self, "popular_attractions"),
+                'picture': getattr(self, "picture")
+                }
+
+        return data
