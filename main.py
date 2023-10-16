@@ -3,17 +3,19 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError, DataError
 from model import db, Destination
 from api import app as api_blueprint
+from api import swaggerui_blueprint
 import random
 
 
 app = Flask(__name__)
 app.register_blueprint(api_blueprint, url_prefix='/api')
+app.register_blueprint(swaggerui_blueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/travel'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 app.json.sort_keys = False
 
 db.init_app(app)
+
 
 VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
 

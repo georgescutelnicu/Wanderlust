@@ -2,9 +2,21 @@ from flask import Blueprint, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError, DataError
 from model import db, Destination
+from flask_swagger_ui import get_swaggerui_blueprint
 import random
 
+
 app = Blueprint('api', __name__)
+
+SWAGGER_URL = '/api/docs'
+API_URL = '/static/json/openapi.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Test application"
+    }
+)
 
 VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
 
