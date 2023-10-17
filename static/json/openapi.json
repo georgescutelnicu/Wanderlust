@@ -1,0 +1,930 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Wanderlust API",
+    "description": "Explore a world of travel possibilities with our Wanderlust API. Find the perfect travel spot for your next adventure. Whether you're seeking an exotic getaway, a cultural experience, or a relaxing escape, our API provides access to a wide range of travel destinations to suit your preferences. Discover valuable information and more with Wanderlust API!",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/random": {
+      "get": {
+        "summary": "Get a random destination",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Destination"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/all": {
+      "get": {
+        "summary": "Get all destinations",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Destination"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recent": {
+      "get": {
+        "summary": "Get recent destinations",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Destination"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Search for destinations",
+        "parameters": [
+          {
+            "name": "continent",
+            "in": "query",
+            "description": "Continent filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Country filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Description filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "budget",
+            "in": "query",
+            "description": "Budget filter",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "affordable",
+                "moderate",
+                "expensive"
+              ]
+            }
+          },
+          {
+            "name": "eating_out",
+            "in": "query",
+            "description": "Eating Out rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "sightseeing",
+            "in": "query",
+            "description": "Sightseeing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "activities",
+            "in": "query",
+            "description": "Activities rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "shopping",
+            "in": "query",
+            "description": "Shopping rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "nightlife",
+            "in": "query",
+            "description": "Nightlife rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "museums",
+            "in": "query",
+            "description": "Museums rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "kid_friendly",
+            "in": "query",
+            "description": "Kid-Friendly rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "beaches",
+            "in": "query",
+            "description": "Beaches rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "skiing",
+            "in": "query",
+            "description": "Skiing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "diving",
+            "in": "query",
+            "description": "Diving rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "camping",
+            "in": "query",
+            "description": "Camping rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "hiking",
+            "in": "query",
+            "description": "Hiking rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "cycling",
+            "in": "query",
+            "description": "Cycling rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "sailing",
+            "in": "query",
+            "description": "Sailing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "romantic",
+            "in": "query",
+            "description": "Romantic rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "photography",
+            "in": "query",
+            "description": "Photography rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "popular_attractions",
+            "in": "query",
+            "description": "Popular attractions filter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Destination"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/add_destination": {
+      "post": {
+        "summary": "Add a new destination",
+        "parameters": [
+          {
+            "name": "continent",
+            "in": "query",
+            "description": "Continent filter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Country filter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City filter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Description filter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "budget",
+            "in": "query",
+            "description": "Budget filter",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "affordable",
+                "moderate",
+                "expensive"
+              ]
+            }
+          },
+          {
+            "name": "eating_out",
+            "in": "query",
+            "description": "Eating Out rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "sightseeing",
+            "in": "query",
+            "description": "Sightseeing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "activities",
+            "in": "query",
+            "description": "Activities rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "shopping",
+            "in": "query",
+            "description": "Shopping rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "nightlife",
+            "in": "query",
+            "description": "Nightlife rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "museums",
+            "in": "query",
+            "description": "Museums rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "kid_friendly",
+            "in": "query",
+            "description": "Kid-Friendly rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "beaches",
+            "in": "query",
+            "description": "Beaches rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "skiing",
+            "in": "query",
+            "description": "Skiing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "diving",
+            "in": "query",
+            "description": "Diving rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "camping",
+            "in": "query",
+            "description": "Camping rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "hiking",
+            "in": "query",
+            "description": "Hiking rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "cycling",
+            "in": "query",
+            "description": "Cycling rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "sailing",
+            "in": "query",
+            "description": "Sailing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "romantic",
+            "in": "query",
+            "description": "Romantic rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "photography",
+            "in": "query",
+            "description": "Photography rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "popular_attractions",
+            "in": "query",
+            "description": "Popular attractions filter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Destination"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Destination added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Destination"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update_destination/{destination_id}": {
+      "patch": {
+        "summary": "Update a destination",
+        "parameters": [
+          {
+            "name": "destination_id",
+            "in": "path",
+            "description": "ID of the destination to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "continent",
+            "in": "query",
+            "description": "Continent filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Country filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Description filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "budget",
+            "in": "query",
+            "description": "Budget filter",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "affordable",
+                "moderate",
+                "expensive"
+              ]
+            }
+          },
+          {
+            "name": "eating_out",
+            "in": "query",
+            "description": "Eating Out rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "sightseeing",
+            "in": "query",
+            "description": "Sightseeing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "activities",
+            "in": "query",
+            "description": "Activities rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "shopping",
+            "in": "query",
+            "description": "Shopping rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "nightlife",
+            "in": "query",
+            "description": "Nightlife rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "museums",
+            "in": "query",
+            "description": "Museums rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "kid_friendly",
+            "in": "query",
+            "description": "Kid-Friendly rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "beaches",
+            "in": "query",
+            "description": "Beaches rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "skiing",
+            "in": "query",
+            "description": "Skiing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "diving",
+            "in": "query",
+            "description": "Diving rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "camping",
+            "in": "query",
+            "description": "Camping rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "hiking",
+            "in": "query",
+            "description": "Hiking rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "cycling",
+            "in": "query",
+            "description": "Cycling rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "sailing",
+            "in": "query",
+            "description": "Sailing rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "romantic",
+            "in": "query",
+            "description": "Romantic rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "photography",
+            "in": "query",
+            "description": "Photography rating filter",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 5
+            }
+          },
+          {
+            "name": "popular_attractions",
+            "in": "query",
+            "description": "Popular attractions filter",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Destination"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Destination updated successfully"
+          }
+        }
+      }
+    },
+    "/delete_destination/{destination_id}": {
+      "delete": {
+        "summary": "Delete a destination",
+        "parameters": [
+          {
+            "name": "destination_id",
+            "in": "path",
+            "description": "ID of the destination to delete",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Destination deleted successfully"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Destination": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "continent": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "budget": {
+            "type": "string",
+            "enum": [
+              "affordable",
+              "moderate",
+              "expensive"
+            ]
+          },
+          "eating_out": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "sightseeing": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "activities": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "shopping": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "nightlife": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "museums": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "kid_friendly": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "beaches": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "skiing": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "diving": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "camping": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "hiking": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "cycling": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "sailing": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "romantic": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "photography": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "popular_attractions": {
+            "type": "string"
+          },
+          "picture": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
