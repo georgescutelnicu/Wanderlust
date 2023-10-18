@@ -67,14 +67,34 @@ def search_destination():
 def add_destination():
     data = request.json
 
-    if any(field not in VALID_FILTER_COLUMNS for field in data):
-        unexpected_fields = [field for field in data if field not in VALID_FILTER_COLUMNS]
-        return jsonify(error=f"Unexpected fields in your request: {', '.join(unexpected_fields)}"), 400
-
     try:
+        if any(field not in VALID_FILTER_COLUMNS for field in data):
+            unexpected_fields = [field for field in data if field not in VALID_FILTER_COLUMNS]
+            return jsonify(error=f"Unexpected fields in your request: {', '.join(unexpected_fields)}"), 400
+
+        existing_destination = Destination.query.filter_by(city=data['city']).first()
+        if existing_destination:
+            return jsonify(error=f"{data['city']}' is already in our database"), 400
+
+        # I know Oceania is a geographical region, but I chose it instead of Australia to be able to include
+        # as many countries as possible. Australia will be automatically converted to Oceania.
+        allowed_continents = ['Europe', 'North America', 'Asia', 'South America', 'Africa', 'Oceania']
+
+        if data['continent'].lower() == "australia":
+            data['continent'] = "Oceania"
+
+        if data['continent'] not in allowed_continents:
+            return jsonify(error=f"Invalid continent. Allowed continents: {', '.join(allowed_continents)}. Australia"
+                                 f" will be automatically converted to Oceania"), 400
+
+
         new_destination = Destination(**data)
         db.session.add(new_destination)
         db.session.commit()
+
+
+    except KeyError as e:
+        return jsonify(error='The following fields need to be defined: continent, country, city, description'), 400
 
     except IntegrityError as e:
         return jsonify(error="IntegrityError error: A constraint was violated. Check the following steps:"
