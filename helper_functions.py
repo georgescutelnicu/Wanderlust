@@ -13,7 +13,7 @@ def get_random_locations_for_continent(continent, num_locations=3):
     return selected_locations
 
 
-def get_weather(city):
+def get_weather(city, datetime_to_dayname=True):
     url = f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}?'
     data = {
         "unitGroup": "metric",
@@ -29,16 +29,22 @@ def get_weather(city):
         weather_info_dict = {}
         i = 0
         for day in response.json()['days']:
-            date = datetime.strptime(day['datetime'], '%Y-%m-%d')
-            date = date.strftime('%a')
+
+            if datetime_to_dayname:
+                date = datetime.strptime(day['datetime'], '%Y-%m-%d')
+                date = date.strftime('%a')
+
+            else:
+                date = day['datetime']
+
             temp = round(day['temp'])
-            icon = day['icon']
-            if i == 8:
+            description = day['icon']
+            if i == 7:
                 break
             i += 1
 
 
-            weather_info_dict[date] = {'temp': temp, 'icon': icon}
+            weather_info_dict[date] = {'temp': temp, 'description': description}
 
         return weather_info_dict
 

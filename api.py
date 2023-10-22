@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError, DataError
 from model import db, Destination
 from flask_swagger_ui import get_swaggerui_blueprint
+from helper_functions import get_weather
 import random
 
 
@@ -21,20 +22,20 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
 
 
-@app.route("/random")
+@app.route("/random", methods=["GET"])
 def get_random_destination():
     all_destinations = db.session.query(Destination).all()
     random_destination = random.choice(all_destinations)
     return jsonify(destination=random_destination.to_dict())
 
 
-@app.route("/all")
+@app.route("/all", methods=["GET"])
 def get_all_destinations():
     all_destinations = db.session.query(Destination).order_by(Destination.id).all()
     return jsonify(destinations=[destination.to_dict() for destination in all_destinations])
 
 
-@app.route("/recent")
+@app.route("/recent", methods=["GET"])
 def get_recent_destinations():
     recent_destinations = db.session.query(Destination).order_by(Destination.id.desc()).limit(3).all()
 
@@ -44,7 +45,7 @@ def get_recent_destinations():
         return jsonify(error={"Not found": "No recent destinations found"})
 
 
-@app.route("/search")
+@app.route("/search", methods=["GET"])
 def search_destination():
     queries = request.args
     searching_filters = {}
@@ -106,10 +107,10 @@ def add_destination():
     except DataError as e:
         return jsonify(error="Data error: " + str(e)), 500
 
-    return jsonify(message="Destination added successfully", new_destination=new_destination.to_dict())
+    return jsonify(message="Destination added successfully", new_destination=new_destination.to_dict()), 201
 
 
-@app.route("/update_destination/<int:destination_id>", methods=["Patch"])
+@app.route("/update_destination/<int:destination_id>", methods=["PATCH"])
 def update_destination(destination_id):
     destination = Destination.query.get(destination_id)
     data = request.get_json()
@@ -140,3 +141,18 @@ def delete_destination(destination_id):
     db.session.commit()
 
     return jsonify(message=f"Destination with ID {destination_id} has been deleted"), 200
+
+
+@app.route('/get_weather/<city>', methods=['GET'])
+def destination_weather(city):
+    destination = db.session.query(Destination).filter_by(city=city).first()
+
+    if destination:
+        weather_data = get_weather(city, datetime_to_dayname=False)
+
+        if not weather_data:
+            return jsonify(error="Weather data not available for this destination"), 404
+
+        return jsonify(weather_data)
+
+    return jsonify(error="City not found in the database"), 404
