@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/random": {
+    "/api/random": {
       "get": {
         "summary": "Get a random destination",
         "responses": {
@@ -23,7 +23,7 @@
         }
       }
     },
-    "/all": {
+    "/api/all": {
       "get": {
         "summary": "Get all destinations",
         "responses": {
@@ -43,7 +43,7 @@
         }
       }
     },
-    "/recent": {
+    "/api/recent": {
       "get": {
         "summary": "Get recent destinations",
         "responses": {
@@ -63,7 +63,7 @@
         }
       }
     },
-    "/search": {
+    "/api/search": {
       "get": {
         "summary": "Search for destinations",
         "parameters": [
@@ -298,7 +298,7 @@
         }
       }
     },
-    "/add_destination": {
+    "/api/add_destination": {
       "post": {
         "summary": "Add a new destination",
         "parameters": [
@@ -543,7 +543,7 @@
         }
       }
     },
-    "/update_destination/{destination_id}": {
+    "/api/update_destination/{destination_id}": {
       "patch": {
         "summary": "Update a destination",
         "parameters": [
@@ -786,7 +786,7 @@
         }
       }
     },
-    "/delete_destination/{destination_id}": {
+    "/api/delete_destination/{destination_id}": {
       "delete": {
         "summary": "Delete a destination",
         "parameters": [
@@ -797,6 +797,27 @@
             "required": true,
             "schema": {
               "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Destination deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/get_weather/{city}": {
+      "get": {
+        "summary": "Get weather for a destination",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "City name",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
