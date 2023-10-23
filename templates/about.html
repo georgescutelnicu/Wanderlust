@@ -1,0 +1,103 @@
+{% include "header.html" %}
+
+<section class="tm-banner">
+    <div class="tm-container-outer tm-banner-ab">
+        <div class="container">
+
+            <div class="row tm-banner-row tm-banner-row-header">
+                <div class="col-xs-12">
+                    <div class="tm-banner-header">
+                        <br><br><br>
+                        <h1 class="text-uppercase tm-banner-title topm">About</h1>
+                        <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
+                        <p class="tm-banner-subtitle">Wanderlust</p>
+                        <br><br>
+                        <a href="/random" class="text-uppercase btn-primary tm-btn topm">Codebase on GitHub</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row tm-banner-row topm" id="tm-section-search">
+                <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>
+            </div>
+            <div class="tm-banner-overlay"></div>
+        </div>
+    </div>
+</section>
+
+<section class="p-5 tm-container-outer tm-bg-gray mb3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
+                <p class="mb-4 fsm">
+                    Wanderlust is a comprehensive Travel Destination Platform that combines a user-friendly
+                    website and a powerful RESTful API. The website offers an interactive user-friendly interface
+                    where you can discover travel destinations, view detailed city information, check real-time
+                    weather updates and booking flight tikets. Simultaneously, the RESTful API empowers developers to
+                    programmatically access data, enabling them to retrieve, create, update, and delete destinations.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="tm-container-outer">
+    <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse mb3">
+        <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight mr6">
+            <h2 class="">Wanderlust</h2>
+            <ul>
+                <li><strong class="fw900">Random Destination Discovery:</strong> Experience the thrill of spontaneity by exploring random travel destinations.</li>
+                <li><strong class="fw900">In-Depth City Insights:</strong> Discover cities with comprehensive pages showcasing popular attractions, ratings, and valuable insights.</li>
+                <li><strong class="fw900">Tailored Travel Planning:</strong> Explore the world's most visited destinations or narrow down your choices by continent for focused travel planning.</li>
+                <li><strong class="fw900">Real-Time Weather Forecast:</strong> Stay prepared with 7-day weather forecasting for each city on your itinerary.</li>
+                <li><strong class="fw900">Flight Ticket Booking:</strong> Book your flight tickets with our integrated booking widget.</li>
+                <li><strong class="fw900">Intuitive User Interface:</strong> Enjoy a user-friendly and elegant interface for effortless navigation and travel inspiration.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="tm-slideshow-section mb3">
+        <div class="tm-slideshow-description tm-bg-primary ml6">
+            <h2 class="">Wanderlust API</h2>
+            <ul>
+                <li><strong class="fw900">Effortless Data Retrieval:</strong> Retrieve destination data, including ratings, descriptions etc.</li>
+                <li><strong class="fw900">Advanced Search and Filtering:</strong> Advanced search and filtering capabilities to find destinations that match specific criteria.</li>
+                <li><strong class="fw900">Dynamic Data Updates:</strong> Add new destinations to expand the travel content or update existing details to keep the information fresh.</li>
+                <li><strong class="fw900">Secure Data Deletion:</strong> Maintain data integrity by securely deleting destinations as needed.</li>
+                <li><strong class="fw900">Clear Documentation:</strong> Simplify development with clear and comprehensive API documentation using Swagger UI.</li>
+                <li><strong class="fw900">Error Handling and Validation:</strong> Ensure data integrity and reliability with robust error handling and input validation.</li>
+            </ul>
+
+        </div>
+    </section>
+
+    <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse mb3">
+        <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight mr6">
+            <h2 class="">Technologies & Credits</h2>
+            <ul>
+                <li><strong class="fw900">Front-End Development:</strong> HTML, CSS, JS, Bootstrap.</li>
+                <li><strong class="fw900">Back-End Development</strong> Flask, PostgresSQL + SQLAlchemy.</li>
+                <li><strong class="fw900">API Integration:</strong> VisualCrossing API for weather forecasting, Tequila by Kiwi.com for flight ticket booking.</li>
+                <li><strong class="fw900">API Docs:</strong> Swagger UI.</li>
+                <li><strong class="fw900">Data:</strong> Most of the data (ratings and descriptions) was gathered from earthroulette.com, a valuable resource for travel information.</li>
+                <li><strong class="fw900">Theme:</strong> Created by templatemo and modified by me.</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<section class="p-5 tm-container-outer tm-bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
+                <h3 class="text-uppercase mb-4">My Links</h3>
+              <a href="https://georgescutelnicu.github.io/" class="text-uppercase btn-primary tm-btn">Website</a>
+              <a href="https://github.com/georgescutelnicu" class="text-uppercase btn-primary tm-btn">GitHub</a>
+              <a href="https://www.kaggle.com/georgescutelnicu" class="text-uppercase btn-primary tm-btn">Kaggle</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "footer.html" %}

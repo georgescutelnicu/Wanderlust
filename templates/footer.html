@@ -1,0 +1,29 @@
+ <div>
+            <footer class="tm-container-outer">
+                <p class="mb-0"><span style="font-weight: bold;">Wanderlust</span>
+                    - Explore the world one destination at a time. Find the codebase on my
+                    <a rel="nofollow" href="https://github.com/georgescutelnicu" style="font-weight: bold;">GitHub</a>.</p>
+            </footer>
+           </div>
+
+
+
+    <!-- load JS files -->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.scrollTo.min.js') }}"></script>
+
+    <script>
+        $(function(){
+
+            // Smooth scroll to search form
+            $('.tm-down-arrow-link').click(function(){
+                $.scrollTo('#tm-section-search', 300, {easing:'linear'});
+            });
+        });
+
+    </script>
+
+</body>
+</html>

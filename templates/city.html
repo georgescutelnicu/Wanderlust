@@ -1,0 +1,95 @@
+{% include "header.html" %}
+
+<section class="tm-banner">
+    <div class="tm-container-outer" style="background: url({{ destination.picture }}) center top no-repeat; min-height: 720px; position: relative; background-size: cover;">
+        <div class="container">
+
+            <div class="row tm-banner-row tm-banner-row-header">
+                <div class="col-xs-12">
+                    <div class="tm-banner-header">
+                        <h1 class="text-uppercase tm-banner-title topm">{{ destination.city }}</h1>
+                        <h6>{{ destination.country }}, {{ destination.continent }}</h6>
+                        <br>
+                        <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
+                        <br>
+                        <p class="tm-banner-subtitle">{{ destination.description }}</p>
+                        <a href="/random" class="text-uppercase btn-primary tm-btn topm">Get a random destination</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row tm-banner-row topm" id="tm-section-search">
+                            <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>
+            </div>
+            <div class='tm-banner-overlay' style="background: rgba(0, 0, 0, 0.6);"></div>
+        </div>
+    </div>
+</section>
+
+
+<h1 class="topm pb1" style="text-align:center;">
+    What is {{ destination.city }} known for:
+</h1>
+<section class="tm-banner">
+    <p id="popular">{{ destination.popular_attractions }}</p>
+    <div class="bbox">
+        <div class="cell">
+
+      {% for k, v in destination.to_dict()['ratings']|dictsort(true, 'value')|reverse  %}
+        {% if v > 1 %}
+
+            <div class="scores">
+                <p style="width:100%">{{ k.replace('_', ' ') }}</p>
+                <meter max="5" value="{{ v }}">{{ v }}</meter>
+             </div>
+
+        {% endif %}
+      {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<h1 class="topm" style="text-align:center;">
+    Weather forecasting:
+</h1>
+{% if weather %}
+<section class="tm-banner topm">
+    <div class="container">
+        <div class="row" style="text-align: center; justify-content: center;">
+            {% for date, info in weather.items() %}
+                    <div style="margin: auto;">
+                        <img src="{{ url_for('static', filename='weather-icons/' ~ info['description'] ~ '.png') }}" alt="{{ info['description'] }}">
+                        <p><strong>{{ date }} {{ info['temp'] }}°C</strong></p>
+
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<h1 class="topm pb1" style="text-align:center;">
+    Flight tickets:
+</h1>
+<section class="tm-banner topm" style="text-align: center;">
+<div id="widget-holder"></div>
+<script
+data-width="73.5%"
+data-currency="EUR"
+data-lang="en"
+data-affilid="georgesgvtravelproject"
+data-from="OTP"
+data-limit="10"
+data-tile-limit="8"
+data-sort-by="best"
+data-primary-color="69c6ba"
+src="https://widgets.kiwi.com/scripts/widget-search-iframe.js">
+</script>
+</section>
+
+{% include "footer.html" %}
+
+<style>
+
+</style>
