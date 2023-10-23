@@ -1,4 +1,6 @@
 from model import Destination, db
+from flask_paginate import Pagination
+from flask import request
 from datetime import datetime
 import random
 import requests
@@ -11,6 +13,12 @@ def get_random_locations_for_continent(continent, num_locations=3):
     selected_locations = all_locations[:num_locations]
 
     return selected_locations
+
+
+def get_pagination_and_page(per_page, total):
+    page = int(request.args.get('page', 1))
+    pagination = Pagination(page=page, per_page=per_page, total=total, record_name='destinations')
+    return pagination, page
 
 
 def get_weather(city, datetime_to_dayname=True):

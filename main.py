@@ -4,7 +4,8 @@ from sqlalchemy.exc import IntegrityError, DataError
 from model import db, Destination
 from api import app as api_blueprint
 from api import swaggerui_blueprint
-from helper_functions import get_random_locations_for_continent, get_weather
+from helper_functions import get_random_locations_for_continent, get_weather, get_pagination_and_page
+
 import random
 
 
@@ -19,6 +20,8 @@ db.init_app(app)
 
 
 VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
+PER_PAGE = 10
+
 
 
 @app.route("/")
@@ -32,8 +35,11 @@ def home():
 @app.route("/all")
 def get_all_destinations():
     all_destinations = db.session.query(Destination).all()
-    random.shuffle(all_destinations)
-    return render_template("all.html", all_destinations=all_destinations)
+
+    pagination, page = get_pagination_and_page(PER_PAGE, len(all_destinations))
+    destinations_on_page = all_destinations[(page - 1) * PER_PAGE:page * PER_PAGE]
+
+    return render_template("all.html", all_destinations=destinations_on_page, pagination=pagination)
 
 
 @app.route("/all/<continent>")
@@ -44,14 +50,34 @@ def get_all_destinations_by_continent(continent):
         return render_template("404.html")
 
     all_destinations = db.session.query(Destination).filter_by(continent=continent).all()
-    random.shuffle(all_destinations)
-    return render_template("all.html", all_destinations=all_destinations, continent=continent)
+
+    pagination, page = get_pagination_and_page(PER_PAGE, len(all_destinations))
+    destinations_on_page = all_destinations[(page - 1) * PER_PAGE:page * PER_PAGE]
+
+    return render_template("all.html", all_destinations_continent=destinations_on_page, pagination=pagination, continent=continent)
 
 
 @app.route("/latest")
 def get_latest_destinations():
     latest_destinations = db.session.query(Destination).order_by(Destination.id.desc()).limit(5).all()
     return render_template("latest.html", latest_destinations=latest_destinations)
+
+
+@app.route("/most_visited")
+def get_most_visited():
+    top_cities = ["London", "Singapore", "Paris", "Dubai", "New York City", "Bangkok", "Istanbul", "Antalya", "Mumbai",
+              "Rome", "Tokyo", "Taipei", "Guangzhou", "Prague", "Seoul"]
+    existing_cities = []
+
+    for city in top_cities:
+        destination = Destination.query.filter_by(city=city).first()
+        if destination:
+            existing_cities.append(destination)
+
+    pagination, page = get_pagination_and_page(PER_PAGE, len(existing_cities))
+    destinations_on_page = existing_cities[(page - 1) * PER_PAGE:page * PER_PAGE]
+
+    return render_template("most_visited.html", most_visited_destinations=destinations_on_page, pagination=pagination)
 
 
 @app.route("/<city>")
