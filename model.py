@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
+from flask_login import UserMixin
 
 
 db = SQLAlchemy()
@@ -48,3 +49,21 @@ class Destination(db.Model):
                 }
 
         return data
+
+
+
+    class User(UserMixin, db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        username = db.Column(db.String(20), unique=True, nullable=False)
+        email = db.Column(db.String(100), unique=True, nullable=False)
+        password = db.Column(db.String(20), nullable=False)
+
+
+
+    class DestinationToUser(db.Model):
+        destination_id = db.Column(db.Integer, db.ForeignKey('destination.id'), primary_key=True)
+        user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+        status = db.Column(db.String(20))
+
+        destination = db.relationship('Destination', backref='user_associations')
+        user = db.relationship('User', backref='destination_associations')
