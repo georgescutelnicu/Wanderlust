@@ -1,0 +1,40 @@
+{% include "header.html" %}
+
+<section class="p-5 tm-container-outer tm-bg-gray">
+    <div class="container">
+        <div class="row">
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="input-div">
+            {{ form.email.label }} {{ form.email(size=32) }}
+        </div>
+        <div class="input-div">
+            {{ form.password.label }} {{ form.password(size=32) }}
+        </div>
+
+             {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                        {% for message in messages %}
+                            <p class="err">{{ message }}</p>
+                        {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% if errors %}
+                {% for err, err_message in errors.items() %}
+                    {% for message in err_message %}
+                        <p class="err">{{message}}</p>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+        <div class="input-div">
+            {{ form.submit() }}
+        </div>
+    </form>
+        </div>
+</div>
+</section>
+
+{% include "footer.html" %}

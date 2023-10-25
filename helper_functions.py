@@ -15,10 +15,13 @@ def get_random_locations_for_continent(continent, num_locations=3):
     return selected_locations
 
 
+
 def get_pagination_and_page(per_page, total):
     page = int(request.args.get('page', 1))
     pagination = Pagination(page=page, per_page=per_page, total=total, record_name='destinations')
+
     return pagination, page
+
 
 
 def get_weather(city, datetime_to_dayname=True):

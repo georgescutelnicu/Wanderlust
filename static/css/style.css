@@ -772,3 +772,49 @@ meter {
 
 meter::-webkit-meter-optimum-value {
     background: #69c6ba;
+}
+
+form {
+    max-width: 400px;
+    margin: 8% auto;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #69c6ba;
+    color: #fff;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #c66995b3;
+}
+
+.input-div {
+    margin: 25px auto;
+}
+
+.err {
+    color: red;
+    text-align: center;
+    font-weight: 900;
+}
+
+.remove-button {
+    background-color: #c66995;
+    margin: 5px 0px;
+}
+
+.remove-button:hover {
+    background-color: #69c6ba;
+}

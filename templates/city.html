@@ -26,6 +26,24 @@
     </div>
 </section>
 
+{% if current_user.is_authenticated %}
+<section class="p-5 tm-container-outer tm-bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
+                <p class="mb-4">Click the "{% if is_visited %}Remove from{% else %}Add to{% endif %} 'Visited'" button to mark this destination as visited, or click the "{% if is_planned_to_visit %}Remove from{% else %}Add to{% endif %} 'Plan to Visit'" button to plan a future visit to this destination.
+                <br>The lists can be seen at your profile.</p>
+                <a href="{% if is_visited %}/{{destination.city}}/remove_visited{% else %}/{{destination.city}}/add_visited{% endif %}" class="text-uppercase btn-primary tm-btn {% if is_visited %}remove-button{% endif %}">
+                    {% if is_visited %}Remove from 'Visited'{% else %}Add to 'Visited'{% endif %}
+                </a>
+                <a href="{% if is_planned_to_visit %}/{{destination.city}}/remove_plan_to_visit{% else %}/{{destination.city}}/add_plan_to_visit{% endif %}" class="text-uppercase btn-primary tm-btn {% if is_planned_to_visit %}remove-button{% endif %}">
+                    {% if is_planned_to_visit %}Remove from 'Plan to Visit'{% else %}Add to 'Plan to Visit'{% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 
 <h1 class="topm pb1" style="text-align:center;">
     What is {{ destination.city }} known for:

@@ -52,18 +52,37 @@ class Destination(db.Model):
 
 
 
-    class User(UserMixin, db.Model):
-        id = db.Column(db.Integer, primary_key=True)
-        username = db.Column(db.String(20), unique=True, nullable=False)
-        email = db.Column(db.String(100), unique=True, nullable=False)
-        password = db.Column(db.String(20), nullable=False)
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+
+    def add_visited_destination(self, destination):
+        association = DestinationToUser(destination_id=destination.id, user_id=self.id, status='visited')
+        db.session.add(association)
+
+    def add_plan_to_visit_destination(self, destination):
+        association = DestinationToUser(destination_id=destination.id, user_id=self.id, status='plan_to_visit')
+        db.session.add(association)
+
+    def remove_visited_destination(self, destination):
+        association = DestinationToUser.query.filter_by(destination_id=destination.id, user_id=self.id,
+                                                        status='visited').first()
+        db.session.delete(association)
+
+    def remove_plan_to_visit_destination(self, destination):
+        association = DestinationToUser.query.filter_by(destination_id=destination.id, user_id=self.id,
+                                                        status='plan_to_visit').first()
+        db.session.delete(association)
 
 
 
-    class DestinationToUser(db.Model):
-        destination_id = db.Column(db.Integer, db.ForeignKey('destination.id'), primary_key=True)
-        user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-        status = db.Column(db.String(20))
+class DestinationToUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    destination_id = db.Column(db.Integer, db.ForeignKey('destination.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    status = db.Column(db.String(20))
 
-        destination = db.relationship('Destination', backref='user_associations')
-        user = db.relationship('User', backref='destination_associations')
+    destination = db.relationship('Destination', backref='user_associations')
+    user = db.relationship('User', backref='destination_associations')
