@@ -1,15 +1,94 @@
 {% include "header.html" %}
 
-<section class="p-5 tm-container-outer tm-bg-gray">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
-                            <h2 class="text-uppercase mb-4">Try wanderlust json API</h2>
-                            <p class="mb-4">Explore our API documentation to effortlessly integrate and optimize your applications. Get ready to streamline data, enhance functionality, and deliver exceptional user experiences with ease.</p>
-                            <a href="/api/docs" class="text-uppercase btn-primary tm-btn">API Docs</a>
-                        </div>
-                    </div>
+    <section class="p-5 tm-container-outer tm-bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 mx-auto tm-about-text-wrap text-center api-key">
+                    <h2 class="text-uppercase mb-4">API Key</h2>
+                    <p class="mb-4" style="font-size: medium;">{{ current_user.api_key }} </p>
+                    <a href="/generate_api_key" class="text-uppercase btn-primary tm-btn">Generate new API key</a>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
+
+    <div class="tm-container-outer tm-page-wrap pb1">
+        <ul class="nav nav-pills tm-tabs-links">
+            <li class="tm-tab-link-li">
+                <a href="#1a" data-toggle="tab" class="tm-tab-link active">
+                    <img src="{{ url_for('static', filename='img/map.png') }}" alt="Image" class="img-fluid">
+                    Visited
+                </a>
+            </li>
+            <li class="tm-tab-link-li">
+                <a href="#2a" data-toggle="tab" class="tm-tab-link">
+                    <img src="{{ url_for('static', filename='img/airplane.png') }}" alt="Image" class="img-fluid">
+                    Plan to visit
+                </a>
+            </li>
+        </ul>
+    <div class="tab-content clearfix">
+        <div class="tab-pane fade show active" id="1a">
+            {% if visited_destinations|length > 0 %}
+            {% for destination in visited_destinations %}
+            <div class="tm-recommended-place-wrap">
+                <div class="tm-recommended-place">
+                    <img src="{{ destination.destination.picture }}" alt="Image" class="img-fluid tm-recommended-img">
+                    <div class="tm-recommended-description-box">
+                        <h3 class="tm-recommended-title">{{ destination.destination.city }}</h3>
+                        <p class="tm-text-highlight">{{ destination.destination.country }}</p>
+                        <p class="tm-text-gray">{{ destination.destination.popular_attractions }}</p>
+                    </div>
+                    <a href="/{{destination.destination.city}}" class="tm-recommended-price-box">
+                        <p class="tm-recommended-price">
+                            {% if destination.destination.budget == "affordable" %}
+                            $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
+                            {% elif destination.destination.budget == "moderate" %}
+                            $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
+                            {% else %}
+                            $$$
+                            {% endif %}
+                        </p>
+                        <p class="tm-recommended-price-link">Check this city</p>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1 style="text-align: center;">This list is currently empty!</h1>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="2a">
+            {% if planned_to_visit_destinations|length > 0 %}
+            {% for destination in planned_to_visit_destinations %}
+            <div class="tm-recommended-place-wrap">
+                <div class="tm-recommended-place">
+                    <img src="{{ destination.destination.picture }}" alt="Image" class="img-fluid tm-recommended-img">
+                    <div class="tm-recommended-description-box">
+                        <h3 class="tm-recommended-title">{{ destination.destination.city }}</h3>
+                        <p class="tm-text-highlight">{{ destination.destination.country }}</p>
+                        <p class="tm-text-gray">{{ destination.destination.popular_attractions }}</p>
+                    </div>
+                    <a href="/{{destination.destination.city}}" class="tm-recommended-price-box">
+                        <p class="tm-recommended-price">
+                            {% if destination.destination.budget == "affordable" %}
+                            $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
+                            {% elif destination.destination.budget == "moderate" %}
+                            $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
+                            {% else %}
+                            $$$
+                            {% endif %}
+                        </p>
+                        <p class="tm-recommended-price-link">Check this city</p>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1 style="text-align: center;">This list is currently empty!</h1>
+            {% endif %}
+        </div>
+    </div>
+    </div>
 
 {% include "footer.html" %}

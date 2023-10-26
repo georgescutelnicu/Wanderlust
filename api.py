@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError, DataError
 from model import db, Destination
 from flask_swagger_ui import get_swaggerui_blueprint
-from helper_functions import get_weather
+from helper_functions import get_weather, is_valid_api_key, require_valid_api_key
 import random
 
 
@@ -23,6 +23,7 @@ VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
 
 
 @app.route("/random", methods=["GET"])
+@require_valid_api_key
 def get_random_destination():
     all_destinations = db.session.query(Destination).all()
     random_destination = random.choice(all_destinations)
@@ -30,12 +31,14 @@ def get_random_destination():
 
 
 @app.route("/all", methods=["GET"])
+@require_valid_api_key
 def get_all_destinations():
     all_destinations = db.session.query(Destination).order_by(Destination.id).all()
     return jsonify(destinations=[destination.to_dict() for destination in all_destinations])
 
 
 @app.route("/recent", methods=["GET"])
+@require_valid_api_key
 def get_recent_destinations():
     recent_destinations = db.session.query(Destination).order_by(Destination.id.desc()).limit(3).all()
 
@@ -46,6 +49,7 @@ def get_recent_destinations():
 
 
 @app.route("/search", methods=["GET"])
+@require_valid_api_key
 def search_destination():
     queries = request.args
     searching_filters = {}
@@ -65,6 +69,7 @@ def search_destination():
 
 
 @app.route("/add_destination", methods=["POST"])
+@require_valid_api_key
 def add_destination():
     data = request.json
 
@@ -111,6 +116,7 @@ def add_destination():
 
 
 @app.route("/update_destination/<int:destination_id>", methods=["PATCH"])
+@require_valid_api_key
 def update_destination(destination_id):
     destination = Destination.query.get(destination_id)
     data = request.get_json()
@@ -131,6 +137,7 @@ def update_destination(destination_id):
 
 
 @app.route("/delete_destination/<int:destination_id>", methods=["DELETE"])
+@require_valid_api_key
 def delete_destination(destination_id):
     destination = Destination.query.get(destination_id)
 
@@ -144,6 +151,7 @@ def delete_destination(destination_id):
 
 
 @app.route('/get_weather/<city>', methods=['GET'])
+@require_valid_api_key
 def destination_weather(city):
     destination = db.session.query(Destination).filter_by(city=city).first()
 

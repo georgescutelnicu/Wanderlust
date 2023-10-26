@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
 from flask_login import UserMixin
+import secrets
 
 
 db = SQLAlchemy()
@@ -57,6 +58,10 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    api_key = db.Column(db.String(32), unique=True, nullable=True)
+
+    def generate_api_key(self):
+        self.api_key = secrets.token_hex(16)
 
     def add_visited_destination(self, destination):
         association = DestinationToUser(destination_id=destination.id, user_id=self.id, status='visited')

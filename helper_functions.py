@@ -1,7 +1,8 @@
 from model import Destination, db
 from flask_paginate import Pagination
-from flask import request
+from flask import request, jsonify
 from datetime import datetime
+from model import User
 import random
 import requests
 
@@ -61,3 +62,19 @@ def get_weather(city, datetime_to_dayname=True):
 
     else:
         print("POST request for visualcrossing API failed with status code:", response.status_code)
+
+
+
+def is_valid_api_key(api_key):
+    return db.session.query(User).filter_by(api_key=api_key).first() is not None
+
+
+
+def require_valid_api_key(func):
+    def decorated_function(*args, **kwargs):
+        api_key = request.args.get("api_key")
+        if not api_key or not is_valid_api_key(api_key):
+            return jsonify(error="Invalid API key"), 403
+        return func(*args, **kwargs)
+    decorated_function.__name__ = func.__name__
+    return decorated_function
