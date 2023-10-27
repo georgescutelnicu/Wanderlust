@@ -4,6 +4,7 @@ from model import Destination, User, db
 from datetime import datetime
 import requests
 import random
+import os
 
 
 def get_random_locations_for_continent(continent, num_locations=3):
@@ -26,7 +27,7 @@ def get_weather(city, datetime_to_dayname=True):
     data = {
         "unitGroup": "metric",
         "include": "days",
-        "key": "EWQXWJWCG6ZKZBDXUNLZRZK6T",           # ENV VAR
+        "key": os.environ['WEATHER_API_KEY'],
         "contentType": "json",
         "iconSet": 'icons2'
     }
