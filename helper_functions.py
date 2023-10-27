@@ -1,11 +1,9 @@
-from model import Destination, db
-from flask_paginate import Pagination
 from flask import request, jsonify
+from flask_paginate import Pagination
+from model import Destination, User, db
 from datetime import datetime
-from model import User
-import random
 import requests
-
+import random
 
 
 def get_random_locations_for_continent(continent, num_locations=3):
@@ -16,13 +14,11 @@ def get_random_locations_for_continent(continent, num_locations=3):
     return selected_locations
 
 
-
 def get_pagination_and_page(per_page, total):
     page = int(request.args.get('page', 1))
     pagination = Pagination(page=page, per_page=per_page, total=total, record_name='destinations')
 
     return pagination, page
-
 
 
 def get_weather(city, datetime_to_dayname=True):
@@ -64,10 +60,8 @@ def get_weather(city, datetime_to_dayname=True):
         print("POST request for visualcrossing API failed with status code:", response.status_code)
 
 
-
 def is_valid_api_key(api_key):
     return db.session.query(User).filter_by(api_key=api_key).first() is not None
-
 
 
 def require_valid_api_key(func):

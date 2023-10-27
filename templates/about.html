@@ -3,7 +3,6 @@
 <section class="tm-banner">
     <div class="tm-container-outer tm-banner-ab">
         <div class="container">
-
             <div class="row tm-banner-row tm-banner-row-header">
                 <div class="col-xs-12">
                     <div class="tm-banner-header">
@@ -12,8 +11,7 @@
                         <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
                         <p class="tm-banner-subtitle">Wanderlust</p>
                         <br><br>
-                        <a href="/random" class="text-uppercase btn-primary tm-btn topm">Codebase on GitHub</a>
-
+                        <a href="https://github.com/georgescutelnicu/Wanderlust" class="text-uppercase btn-primary tm-btn topm">Codebase on GitHub</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +39,6 @@
     </div>
 </section>
 
-
 <div class="tm-container-outer">
     <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse mb3">
         <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight mr6">
@@ -53,6 +50,7 @@
                 <li><strong class="fw900">Real-Time Weather Forecast:</strong> Stay prepared with 7-day weather forecasting for each city on your itinerary.</li>
                 <li><strong class="fw900">Flight Ticket Booking:</strong> Book your flight tickets with our integrated booking widget.</li>
                 <li><strong class="fw900">Intuitive User Interface:</strong> Enjoy a user-friendly and elegant interface for effortless navigation and travel inspiration.</li>
+                <li><strong class="fw900">User Account Features:</strong> Sign up and log in to save places to your "visited" or "plan to visit" lists, making your travel planning more accessible.</li>
             </ul>
         </div>
     </section>
@@ -67,6 +65,7 @@
                 <li><strong class="fw900">Secure Data Deletion:</strong> Maintain data integrity by securely deleting destinations as needed.</li>
                 <li><strong class="fw900">Clear Documentation:</strong> Simplify development with clear and comprehensive API documentation using Swagger UI.</li>
                 <li><strong class="fw900">Error Handling and Validation:</strong> Ensure data integrity and reliability with robust error handling and input validation.</li>
+                <li><strong class="fw900">API Key Integration:</strong>  Sign up to generate a secure and unique API key, allowing you to access the Wanderlust API.</li>
             </ul>
 
         </div>
@@ -77,11 +76,11 @@
             <h2 class="">Technologies & Credits</h2>
             <ul>
                 <li><strong class="fw900">Front-End Development:</strong> HTML, CSS, JS, Bootstrap.</li>
-                <li><strong class="fw900">Back-End Development</strong> Flask, PostgresSQL + SQLAlchemy.</li>
+                <li><strong class="fw900">Back-End Development</strong> Flask (flask_sqlalchemy, flask_login, flask_swagger_ui, flask_paginate, werkzeug.security etc.), PostgresSQL + SQLAlchemy.</li>
                 <li><strong class="fw900">API Integration:</strong> VisualCrossing API for weather forecasting, Tequila by Kiwi.com for flight ticket booking.</li>
                 <li><strong class="fw900">API Docs:</strong> Swagger UI.</li>
-                <li><strong class="fw900">Data:</strong> Most of the data (ratings and descriptions) was gathered from earthroulette.com, a valuable resource for travel information.</li>
-                <li><strong class="fw900">Theme:</strong> Created by templatemo and modified by me.</li>
+                <li><strong class="fw900">Data:</strong> Most of the data was gathered from earthroulette.com, a valuable resource for travel information.</li>
+                <li><strong class="fw900">Theme:</strong> Created by templatemo and modified by me to fit this project.</li>
             </ul>
         </div>
     </section>

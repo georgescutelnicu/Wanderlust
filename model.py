@@ -6,6 +6,7 @@ import secrets
 
 db = SQLAlchemy()
 
+
 class Destination(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     continent = db.Column(db.String(250), nullable=False)
@@ -52,7 +53,6 @@ class Destination(db.Model):
         return data
 
 
-
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -80,7 +80,6 @@ class User(UserMixin, db.Model):
         association = DestinationToUser.query.filter_by(destination_id=destination.id, user_id=self.id,
                                                         status='plan_to_visit').first()
         db.session.delete(association)
-
 
 
 class DestinationToUser(db.Model):

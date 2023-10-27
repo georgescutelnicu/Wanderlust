@@ -1,8 +1,8 @@
 {% include "header.html" %}
+
 <section class="tm-banner">
     <div class="tm-container-outer tm-banner-ad">
         <div class="container">
-
             <div class="row tm-banner-row tm-banner-row-header">
                 <div class="col-xs-12">
                     <div class="tm-banner-header">
@@ -10,7 +10,6 @@
                         <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
                         <p class="tm-banner-subtitle">Our latest destinations.</p>
                         <a href="/random" class="text-uppercase btn-primary tm-btn topm">Get a random destination</a>
-
                     </div>
                 </div>
             </div>
@@ -25,8 +24,8 @@
 <div class="tm-page-wrap mx-auto pt1 pb1">
     <div class="tab-pane">
 
-
         {% for destination in latest_destinations %}
+
         <div class="tm-recommended-place-wrap">
             <div class="tm-recommended-place">
                 <img src="{{ destination.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -38,22 +37,21 @@
                 <a href="/{{destination.city}}" class="tm-recommended-price-box">
                     <p class="tm-recommended-price">
                         {% if destination.budget == "affordable" %}
-                        <span style="color: #079737;">$</span>$$
+                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                         {% elif destination.budget == "moderate" %}
-                        <span style="color: #079737;">$$</span>$
+                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                         {% else %}
-                        <span style="color: #079737;">$$$</span>
+                        $$$
                         {% endif %}
                     </p>
                     <p class="tm-recommended-price-link">Check this city</p>
                 </a>
             </div>
         </div>
+
         {% endfor %}
 
 </div>
 </div>
-
-
 
 {% include "footer.html" %}

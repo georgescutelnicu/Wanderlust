@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError, DataError
-from model import db, Destination
 from flask_swagger_ui import get_swaggerui_blueprint
 from helper_functions import get_weather, is_valid_api_key, require_valid_api_key
+from model import db, Destination
 import random
 
 

@@ -9,6 +9,17 @@
     "/api/random": {
       "get": {
         "summary": "Get a random destination",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -26,6 +37,17 @@
     "/api/all": {
       "get": {
         "summary": "Get all destinations",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -46,6 +68,17 @@
     "/api/recent": {
       "get": {
         "summary": "Get recent destinations",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -67,6 +100,15 @@
       "get": {
         "summary": "Search for destinations",
         "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "continent",
             "in": "query",
@@ -302,6 +344,15 @@
       "post": {
         "summary": "Add a new destination",
         "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "continent",
             "in": "query",
@@ -548,6 +599,15 @@
         "summary": "Update a destination",
         "parameters": [
           {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "destination_id",
             "in": "path",
             "description": "ID of the destination to update",
@@ -791,6 +851,15 @@
         "summary": "Delete a destination",
         "parameters": [
           {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "destination_id",
             "in": "path",
             "description": "ID of the destination to delete",
@@ -812,6 +881,15 @@
         "summary": "Get weather for a destination",
         "parameters": [
           {
+            "name": "api_key",
+            "in": "query",
+            "description": "Register to get an api key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "city",
             "in": "path",
             "description": "City name",
@@ -823,7 +901,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Destination deleted successfully"
+            "description": "Success"
           }
         }
       }

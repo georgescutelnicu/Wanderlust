@@ -4,7 +4,6 @@
             <section class="tm-banner">
                 <div class="tm-container-outer tm-banner-bg">
                     <div class="container">
-
                         <div class="row tm-banner-row tm-banner-row-header">
                             <div class="col-xs-12">
                                 <div class="tm-banner-header">
@@ -12,16 +11,15 @@
                                     <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
                                     <p class="tm-banner-subtitle">Want to travel and don't know where to go?</p>
                                     <a href="/random" class="text-uppercase btn-primary tm-btn topm">Get a random destination</a>
-
                                 </div>
-                            </div>  <!-- col-xs-12 -->
-                        </div> <!-- row -->
+                            </div>
+                        </div>
                         <div class="row tm-banner-row topm" id="tm-section-search">
                             <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>
-                        </div> <!-- row -->
+                        </div>
                         <div class="tm-banner-overlay"></div>
-                    </div>  <!-- .container -->
-                </div>     <!-- .tm-container-outer -->
+                    </div>
+                </div>
             </section>
 
             <section class="p-5 tm-container-outer tm-bg-gray">            
@@ -47,6 +45,7 @@
                         <a href="/most_visited" class="text-uppercase tm-btn tm-btn-white tm-btn-white-primary">Jump to it</a>
                     </div>
                 </section>
+
                 <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse">
 
                     <div class="tm-right tm-slideshow tm-slideshow-highlight">
@@ -57,9 +56,9 @@
                         <h2 class="">Check latest destinations</h2>
                         <p>Discover the freshest additions to our collection of exciting destinations. Stay up-to-date with the latest travel hotspots, hidden gems, and must-visit places. Your next adventure awaits among these newly featured destinations. Explore now!</p>
                         <a href="/latest" class="text-uppercase tm-btn tm-btn-white tm-btn-white-highlight">Jump to it</a>
-                    </div>                        
-
+                    </div>
                 </section>
+
                 <section class="tm-slideshow-section">
                     <div class="tm-slideshow">
                         <img src="{{ url_for('static', filename='img/img-03.jpg') }}" alt="Image">
@@ -70,7 +69,8 @@
                         <a href="/all" class="text-uppercase tm-btn tm-btn-white tm-btn-white-primary">Jump to it</a>
                     </div>
                 </section>
-            </div>        
+            </div>
+
             <div class="tm-container-outer pb1" id="tm-section-3">
                 <ul class="nav nav-pills tm-tabs-links">
                     <li class="tm-tab-link-li">
@@ -111,10 +111,10 @@
                     </li>
                 </ul>
                 <div class="tab-content clearfix">
-                	
-                    <!-- Tab 1 -->
                     <div class="tab-pane fade" id="1a">
+
                         {% for location in continent_locations["North America"] %}
+
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
                                 <img src="{{ location.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -126,25 +126,27 @@
                                 <a href="/{{location.city}}" class="tm-recommended-price-box">
                                     <p class="tm-recommended-price">
                                         {% if location.budget == "affordable" %}
-                                        <span style="color: #079737;">$</span>$$
+                                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                                         {% elif location.budget == "moderate" %}
-                                        <span style="color: #079737;">$$</span>$
+                                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                                         {% else %}
-                                        <span style="color: #079737;">$$$</span>
+                                        $$$
                                         {% endif %}
                                     </p>
                                     <p class="tm-recommended-price-link">Check this city</p>
                                 </a>
                             </div>
                         </div>
+
                         {% endfor %}
 
                         <a href="/all/North America" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
-                    </div> <!-- tab-pane -->
-                    
-                    <!-- Tab 2 -->
+                    </div>
+
                     <div class="tab-pane fade" id="2a">
+
                         {% for location in continent_locations["South America"] %}
+
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
                                 <img src="{{ location.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -156,24 +158,27 @@
                                 <a href="/{{location.city}}" class="tm-recommended-price-box">
                                     <p class="tm-recommended-price">
                                         {% if location.budget == "affordable" %}
-                                        <span style="color: #079737;">$</span>$$
+                                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                                         {% elif location.budget == "moderate" %}
-                                        <span style="color: #079737;">$$</span>$
+                                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                                         {% else %}
-                                        <span style="color: #079737;">$$$</span>
+                                        $$$
                                         {% endif %}
                                     </p>
                                     <p class="tm-recommended-price-link">Check this city</p>
                                 </a>
                             </div>
                         </div>
+
                         {% endfor %}
+
                         <a href="/all/South America" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
-                    </div> <!-- tab-pane -->
-                    
-                    <!-- Tab 3 -->     
+                    </div>
+
                     <div class="tab-pane fade show active" id="3a">
+
                         {% for location in continent_locations["Europe"] %}
+
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
                                 <img src="{{ location.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -185,24 +190,27 @@
                                 <a href="/{{location.city}}" class="tm-recommended-price-box">
                                     <p class="tm-recommended-price">
                                         {% if location.budget == "affordable" %}
-                                        <span style="color: #079737;">$</span>$$
+                                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                                         {% elif location.budget == "moderate" %}
-                                        <span style="color: #079737;">$$</span>$
+                                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                                         {% else %}
-                                        <span style="color: #079737;">$$$</span>
+                                        $$$
                                         {% endif %}
                                     </p>
                                     <p class="tm-recommended-price-link">Check this city</p>
                                 </a>
                             </div>
                         </div>
+
                         {% endfor %}
+
                         <a href="/all/Europe" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
-                    </div> <!-- tab-pane -->
-                    
-                    <!-- Tab 4 -->
+                    </div>
+
                     <div class="tab-pane fade" id="4a">
+
                     {% for location in continent_locations["Asia"] %}
+
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
                                 <img src="{{ location.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -214,25 +222,27 @@
                                 <a href="/{{location.city}}" class="tm-recommended-price-box">
                                     <p class="tm-recommended-price">
                                         {% if location.budget == "affordable" %}
-                                        <span style="color: #079737;">$</span>$$
+                                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                                         {% elif location.budget == "moderate" %}
-                                        <span style="color: #079737;">$$</span>$
+                                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                                         {% else %}
-                                        <span style="color: #079737;">$$$</span>
+                                        $$$
                                         {% endif %}
                                     </p>
                                     <p class="tm-recommended-price-link">Check this city</p>
                                 </a>
                             </div>
                         </div>
+
                         {% endfor %}
+
                         <a href="/all/Asia" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
-                    </div> <!-- tab-pane -->
-                    
-                    <!-- Tab 5 -->
+                    </div>
+
                     <div class="tab-pane fade" id="5a">
 
                        {% for location in continent_locations["Africa"] %}
+
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
                                 <img src="{{ location.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -244,25 +254,27 @@
                                 <a href="/{{location.city}}" class="tm-recommended-price-box">
                                     <p class="tm-recommended-price">
                                         {% if location.budget == "affordable" %}
-                                        <span style="color: #079737;">$</span>$$
+                                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                                         {% elif location.budget == "moderate" %}
-                                        <span style="color: #079737;">$$</span>$
+                                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                                         {% else %}
-                                        <span style="color: #079737;">$$$</span>
+                                        $$$
                                         {% endif %}
                                     </p>
                                     <p class="tm-recommended-price-link">Check this city</p>
                                 </a>
                             </div>
                         </div>
+
                         {% endfor %}
+
                         <a href="/all/Africa" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
-                    </div> <!-- tab-pane -->   
-                    
-                    <!-- Tab 6 -->            
+                    </div>
+
                     <div class="tab-pane fade" id="6a">
 
                         {% for location in continent_locations["Oceania"] %}
+
                         <div class="tm-recommended-place-wrap">
                             <div class="tm-recommended-place">
                                 <img src="{{ location.picture }}" alt="Image" class="img-fluid tm-recommended-img">
@@ -274,21 +286,22 @@
                                 <a href="/{{location.city}}" class="tm-recommended-price-box">
                                     <p class="tm-recommended-price">
                                         {% if location.budget == "affordable" %}
-                                        <span style="color: #079737;">$</span>$$
+                                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                                         {% elif location.budget == "moderate" %}
-                                        <span style="color: #079737;">$$</span>$
+                                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                                         {% else %}
-                                        <span style="color: #079737;">$$$</span>
+                                        $$$
                                         {% endif %}
                                     </p>
                                     <p class="tm-recommended-price-link">Check this city</p>
                                 </a>
                             </div>
                         </div>
-                        {% endfor %}
-                        <a href="/all/Oceania" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
-                    </div> <!-- tab-pane -->
 
+                        {% endfor %}
+
+                        <a href="/all/Oceania" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
+                    </div>
                 </div>
             </div>
         </div>

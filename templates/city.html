@@ -3,7 +3,6 @@
 <section class="tm-banner">
     <div class="tm-container-outer" style="background: url({{ destination.picture }}) center top no-repeat; min-height: 720px; position: relative; background-size: cover;">
         <div class="container">
-
             <div class="row tm-banner-row tm-banner-row-header">
                 <div class="col-xs-12">
                     <div class="tm-banner-header">
@@ -14,7 +13,6 @@
                         <br>
                         <p class="tm-banner-subtitle">{{ destination.description }}</p>
                         <a href="/random" class="text-uppercase btn-primary tm-btn topm">Get a random destination</a>
-
                     </div>
                 </div>
             </div>
@@ -27,6 +25,7 @@
 </section>
 
 {% if current_user.is_authenticated %}
+
 <section class="p-5 tm-container-outer tm-bg-gray">
     <div class="container">
         <div class="row">
@@ -43,6 +42,7 @@
         </div>
     </div>
 </section>
+
 {% endif %}
 
 <h1 class="topm pb1" style="text-align:center;">
@@ -71,20 +71,26 @@
 <h1 class="topm" style="text-align:center;">
     Weather forecasting:
 </h1>
+
 {% if weather %}
+
 <section class="tm-banner topm">
     <div class="container">
         <div class="row" style="text-align: center; justify-content: center;">
+
             {% for date, info in weather.items() %}
+
                     <div style="margin: auto;">
                         <img src="{{ url_for('static', filename='weather-icons/' ~ info['description'] ~ '.png') }}" alt="{{ info['description'] }}">
                         <p><strong>{{ date }} {{ info['temp'] }}°C</strong></p>
-
                     </div>
+
             {% endfor %}
+
         </div>
     </div>
 </section>
+
 {% endif %}
 
 <h1 class="topm pb1" style="text-align:center;">
@@ -107,7 +113,3 @@ src="https://widgets.kiwi.com/scripts/widget-search-iframe.js">
 </section>
 
 {% include "footer.html" %}
-
-<style>
-
-</style>

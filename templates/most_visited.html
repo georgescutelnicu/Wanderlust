@@ -1,8 +1,8 @@
 {% include "header.html" %}
+
 <section class="tm-banner">
     <div class="tm-container-outer tm-banner-ad">
         <div class="container">
-
             <div class="row tm-banner-row tm-banner-row-header">
                 <div class="col-xs-12">
                     <div class="tm-banner-header">
@@ -10,7 +10,6 @@
                         <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
                         <p class="tm-banner-subtitle">Most visited cities in the world.</p>
                         <a href="/random" class="text-uppercase btn-primary tm-btn topm">Get a random destination</a>
-
                     </div>
                 </div>
             </div>
@@ -38,11 +37,11 @@
                 <a href="/{{destination.city}}" class="tm-recommended-price-box">
                     <p class="tm-recommended-price">
                         {% if destination.budget == "affordable" %}
-                        <span style="color: #079737;">$</span>$$
+                        $<span style="color: rgba(255, 255, 255, 0.2);">$$</span>
                         {% elif destination.budget == "moderate" %}
-                        <span style="color: #079737;">$$</span>$
+                        $$<span style="color: rgba(255, 255, 255, 0.2);">$</span>
                         {% else %}
-                        <span style="color: #079737;">$$$</span>
+                        $$$
                         {% endif %}
                     </p>
                     <p class="tm-recommended-price-link">Check this city</p>
@@ -76,7 +75,5 @@
         </div>
     </div>
 </div>
-
-
 
 {% include "footer.html" %}
