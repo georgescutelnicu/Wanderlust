@@ -8,8 +8,8 @@ Travel inspiration platform that includes a user-friendly website for exploring 
 
 Wanderlust is a comprehensive Travel Destination Platform that combines a user-friendly website and a powerful RESTful API. The website offers an interactive user-friendly interface where you can discover travel destinations, view detailed city information, check real-time weather updates, and book flight tickets. Simultaneously, the RESTful API empowers developers to programmatically access data, enabling them to retrieve, create, update, and delete destinations.
 
-[Explore Wanderlust Website](LINK) <br>
-[Explore Wanderlust API Docs](LINK)
+[Explore Wanderlust Website](https://wanderlust-v4k4.onrender.com/) <br>
+[Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/)
 
 ## Features
 
