@@ -11,7 +11,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 ## Demo
 
 [Explore Wanderlust Website](https://wanderlust-v4k4.onrender.com/) <br>
-[Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/) <br>
+[Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/) <br><br>
 **<ins>QUICK NOTES:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>It may take a few seconds for the website to start.**
 
 ## Features
