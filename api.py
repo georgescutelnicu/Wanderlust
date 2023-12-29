@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError, DataError
 from flask_swagger_ui import get_swaggerui_blueprint
-from helper_functions import get_weather, is_valid_api_key, require_valid_api_key
+from helper_functions import get_weather, require_valid_api_key
 from model import db, Destination
 import country_converter as coco
 import random
@@ -104,19 +103,28 @@ def add_destination():
         db.session.add(new_destination)
         db.session.commit()
 
-
     except KeyError as e:
-        return jsonify(error='The following fields need to be defined: continent, country, city, description'), 400
+        return jsonify(error="The following field needs to be defined: " + str(e)), 400
 
-    except IntegrityError as e:
+    except IntegrityError:
         return jsonify(error="IntegrityError error: A constraint was violated. Check the following steps: "
-                             "1. The following fields are mandatory: country, continent, description, city and popular_attractions  "
+                             "1. Next fields are mandatory and should be of type string: "
+                             "country, continent, description, city, popular_attractions  "
                              "2. Budget field should have a value of either 'affordable', 'moderate', or 'expensive'  "
-                             "3. The following field need to be strings (or NULL): picture  "
+                             "3. The following field needs to be string (or NULL): picture  "
                              "4. The other fields should have values between 0 and 5"), 400
 
     except DataError as e:
         return jsonify(error="Data error: " + str(e)), 500
+
+    except Exception as e:
+        return jsonify(error="An error has occured! Make sure to check the following steps: "                           
+                             "1. Next fields are mandatory and should be of type string: "
+                             "country, continent, description, city, popular_attractions  "
+                             "2. Budget field should have a value of either 'affordable', 'moderate', or 'expensive'  "
+                             "3. The following field needs to be string (or NULL): picture  "
+                             "4. The other fields should have values(integers) between 0 and 5  "
+                             "Error: " + str(e)), 500
 
     return jsonify(message="Destination added successfully", new_destination=new_destination.to_dict()), 201
 
