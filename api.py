@@ -56,10 +56,11 @@ def search_destination():
     searching_filters = {}
 
     for key, value in queries.items():
-        if key not in VALID_FILTER_COLUMNS:
-            return jsonify(error={"Invalid Argument": f"{key} is not a valid filter column."}), 400
-        else:
-            searching_filters[key] = value
+        if key != "api_key":
+            if key not in VALID_FILTER_COLUMNS:
+                return jsonify(error={"Invalid Argument": f"{key} is not a valid filter column."}), 400
+            else:
+                searching_filters[key] = value
 
     all_destinations = Destination.query.filter_by(**searching_filters).all()
 
@@ -108,10 +109,10 @@ def add_destination():
         return jsonify(error='The following fields need to be defined: continent, country, city, description'), 400
 
     except IntegrityError as e:
-        return jsonify(error="IntegrityError error: A constraint was violated. Check the following steps:"
-                             "1. The following fields need to be defined: continent, country, city, description"
-                             "2. Budget field should have a value of either 'affordable', 'moderate', or 'expensive'"
-                             "3. The following field need to be strings (or NULL): picture, popular atractions"
+        return jsonify(error="IntegrityError error: A constraint was violated. Check the following steps: "
+                             "1. The following fields are mandatory: country, continent, description, city and popular_attractions  "
+                             "2. Budget field should have a value of either 'affordable', 'moderate', or 'expensive'  "
+                             "3. The following field need to be strings (or NULL): picture  "
                              "4. The other fields should have values between 0 and 5"), 400
 
     except DataError as e:
