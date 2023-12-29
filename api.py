@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError, DataError
 from flask_swagger_ui import get_swaggerui_blueprint
 from helper_functions import get_weather, is_valid_api_key, require_valid_api_key
 from model import db, Destination
+import country_converter as coco
 import random
 
 
@@ -93,6 +94,10 @@ def add_destination():
             return jsonify(error=f"Invalid continent. Allowed continents: {', '.join(allowed_continents)}. Australia"
                                  f" will be automatically converted to Oceania"), 400
 
+        country_code = coco.convert(data["country"], to="ISO3")
+        if country_code == "not found":
+            return jsonify(error=f"{data['country']} is not a valid country name. You can check a list of valid country"
+                                 f"names here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3")
 
         new_destination = Destination(**data)
         db.session.add(new_destination)
