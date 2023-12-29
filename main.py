@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify, redirect, flash, url_for
-from flask_sqlalchemy import SQLAlchemy
 from model import db, Destination, User, DestinationToUser
 from api import app as api_blueprint
 from api import swaggerui_blueprint
@@ -23,6 +22,8 @@ db.init_app(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
@@ -46,7 +47,8 @@ def get_all_destinations():
     pagination, page = get_pagination_and_page(PER_PAGE, len(all_destinations))
     destinations_on_page = all_destinations[(page - 1) * PER_PAGE:page * PER_PAGE]
 
-    return render_template("all.html", all_destinations=destinations_on_page, pagination=pagination, current_user=current_user)
+    return render_template("all.html", all_destinations=destinations_on_page, pagination=pagination,
+                           current_user=current_user)
 
 
 @app.route("/all/<continent>")
@@ -75,7 +77,7 @@ def get_latest_destinations():
 @app.route("/most_visited")
 def get_most_visited():
     top_cities = ["London", "Singapore", "Paris", "Dubai", "New York City", "Bangkok", "Istanbul", "Antalya", "Mumbai",
-              "Rome", "Tokyo", "Taipei", "Guangzhou", "Prague", "Seoul"]
+                  "Rome", "Tokyo", "Taipei", "Guangzhou", "Prague", "Seoul"]
     existing_cities = []
 
     for city in top_cities:
