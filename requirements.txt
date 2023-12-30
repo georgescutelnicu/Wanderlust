@@ -13,3 +13,6 @@ SQLAlchemy==2.0.19
 Werkzeug==2.2.3
 WTForms==3.0.1
 gunicorn==21.2.0
+country-converter==1.2
+plotly==5.18.0
+plotly-express==0.4.1
