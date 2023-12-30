@@ -814,3 +814,12 @@ input[type="submit"]:hover {
         padding: 10% 0 0;
     }
 }
+
+.map {
+    text-align: center;
+}
+
+.responsive-map {
+    max-width: 100%;
+    display: inline-block;
+}

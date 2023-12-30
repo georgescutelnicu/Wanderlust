@@ -52,13 +52,38 @@ def get_weather(city, datetime_to_dayname=True):
                 break
             i += 1
 
-
             weather_info_dict[date] = {'temp': temp, 'description': description}
 
         return weather_info_dict
 
     else:
         print("POST request for visualcrossing API failed with status code:", response.status_code)
+
+
+def get_map(visited_destinations, planned_to_visit_destinations):
+    visited = [coco.convert(d.destination.country, to="ISO3") for d in visited_destinations]
+    plan_to_visit = [coco.convert(d.destination.country, to="ISO3") for d in planned_to_visit_destinations]
+
+    all_countries = visited + plan_to_visit
+    status = ["Visited"] * len(visited) + ["Plan to Visit"] * len(plan_to_visit)
+    data = {
+        "Country": all_countries,
+        "Status": status
+    }
+
+    fig = px.choropleth(
+        data,
+        locations="Country",
+        color="Status",
+        color_discrete_map={"Visited": "green", "Plan to Visit": "blue"}
+    )
+
+    fig.update_layout(autosize=True, margin=dict(l=0, r=0, b=0, t=0), legend=dict(x=0.5, y=0.0, xanchor='center', yanchor='top',  orientation='h'),
+                      legend_title=dict(text=''))
+
+    html_plot = pyo.plot(fig, output_type='div', auto_open=False, show_link=False)
+
+    return html_plot
 
 
 def is_valid_api_key(api_key):

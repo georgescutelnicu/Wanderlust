@@ -246,8 +246,10 @@ def profile(username):
         status='plan_to_visit'
     ).join(Destination).all()
 
+    map_url = get_map(visited_destinations, planned_to_visit_destinations)
+
     return render_template("profile.html", current_user=current_user, visited_destinations=visited_destinations,
-                           planned_to_visit_destinations=planned_to_visit_destinations)
+                           planned_to_visit_destinations=planned_to_visit_destinations, map_url=map_url)
 
 
 @app.route("/generate_api_key")
