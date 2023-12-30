@@ -3,7 +3,7 @@ from model import db, Destination, User, DestinationToUser
 from api import app as api_blueprint
 from api import swaggerui_blueprint
 from form import RegistrationForm, LoginForm
-from helper_functions import get_random_locations_for_continent, get_weather, get_pagination_and_page
+from helper_functions import get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 import random
