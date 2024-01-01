@@ -566,6 +566,7 @@
             "name": "popular_attractions",
             "in": "query",
             "description": "Popular attractions filter",
+            "required": true,
             "schema": {
               "type": "string"
             }
