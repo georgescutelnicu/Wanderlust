@@ -823,3 +823,40 @@ input[type="submit"]:hover {
     max-width: 100%;
     display: inline-block;
 }
+
+.badge {
+    display: block;
+    margin: auto auto 40px auto;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.badge img{
+    margin: auto auto 20px auto;
+    width: 20%;
+}
+
+.badge p {
+    margin: auto auto 6px auto;
+    font-size: 16px;
+}
+
+.badge_inactive {
+    filter: url(filters.svg#grayscale);
+    filter: gray;
+    -webkit-filter: grayscale(1);
+}
+
+.badge_inactive:hover {
+    filter: none;
+    -webkit-filter: none;
+}
+
+.title {
+    margin: auto auto 50px auto;
+    text-align: center;
+    color: #69c6ba;
+}
+
+.title span {
+    color: #c66995;
+}
