@@ -32,6 +32,12 @@
                 Map
             </a>
         </li>
+        <li class="tm-tab-link-li">
+            <a href="#4a" data-toggle="tab" class="tm-tab-link">
+                <img src="{{ url_for('static', filename='img/badge.png') }}" alt="Image" class="img-fluid">
+                Achievements
+            </a>
+        </li>
     </ul><div class="tab-content clearfix">
     <div class="tab-pane fade show active" id="1a">
 
@@ -115,6 +121,27 @@
          </div>
     </div>
 
+    <div class="tab-pane fade" id="4a">
+        <div class="tm-recommended-place-wrap">
+            <h4 class="title">Your current title is: <span><strong>{{ title }}</strong></span></h4>
+            <div class="badge">
+                <img src="../static/img/badges/badge1.png" alt="Image" class="img-fluid tm-recommended-img">
+                <p>Join now and start exploring!</p>
+            </div>
+            <div class="badge">
+                <img src="../static/img/badges/badge2.png" alt="Image" class="img-fluid tm-recommended-img {% if planned_to_visit_destinations|length < 3 %} badge_inactive {% endif %}">
+                <p>Plan your next 3 destinations!</p>
+            </div>
+            <div class="badge">
+                <img src="../static/img/badges/badge3.png" alt="Image" class="img-fluid tm-recommended-img {% if visited_destinations|length < 5 %} badge_inactive {% endif %}">
+                <p>Visit 5 places!</p>
+            </div>
+            <div class="badge">
+                <img src="../static/img/badges/badge4.png" alt="Image" class="img-fluid tm-recommended-img {% if visited_destinations|map(attribute='destination.continent')|unique|list|length != 6 %} badge_inactive {% endif %}">
+                <p>Touch every continent!</p>
+            </div>
+        </div>
+    </div>
 
 </div>
 </div>

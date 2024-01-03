@@ -89,6 +89,30 @@ def get_map(visited_destinations, planned_to_visit_destinations):
     return html_plot
 
 
+def get_title(visited_destinations, planned_to_visit_destinations):
+    titles = {
+        1: "Novice Explorer",
+        2: "Epic Explorer",
+        3: "Seasoned Adventurer",
+        4: "Ultimate Pathfinder"
+    }
+
+    count_badges = 1
+
+    if len(planned_to_visit_destinations) > 2:
+        count_badges += 1
+
+    if len(visited_destinations) > 4:
+        count_badges += 1
+
+    continents_visited = set(d.destination.continent for d in visited_destinations)
+
+    if len(continents_visited) == 6:
+        count_badges += 1
+
+    return titles[count_badges]
+
+
 def is_valid_api_key(api_key):
     return db.session.query(User).filter_by(api_key=api_key).first() is not None
 

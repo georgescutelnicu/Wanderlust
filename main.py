@@ -3,7 +3,7 @@ from model import db, Destination, User, DestinationToUser
 from api import app as api_blueprint
 from api import swaggerui_blueprint
 from form import RegistrationForm, LoginForm
-from helper_functions import get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map
+from helper_functions import get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map, get_title
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 import random
@@ -247,9 +247,10 @@ def profile(username):
     ).join(Destination).all()
 
     map_url = get_map(visited_destinations, planned_to_visit_destinations)
+    title = get_title(visited_destinations, planned_to_visit_destinations)
 
     return render_template("profile.html", current_user=current_user, visited_destinations=visited_destinations,
-                           planned_to_visit_destinations=planned_to_visit_destinations, map_url=map_url)
+                           planned_to_visit_destinations=planned_to_visit_destinations, map_url=map_url, title=title)
 
 
 @app.route("/generate_api_key")
