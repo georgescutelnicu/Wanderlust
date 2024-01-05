@@ -63,6 +63,36 @@ def get_weather(city, datetime_to_dayname=True):
         print("POST request for visualcrossing API failed with status code:", response.status_code)
 
 
+def get_info(country):
+    data = {}
+
+    country_code = coco.convert(country, to="ISO2")
+    url = f"https://api.dev.me/v1-get-country-details?code={country_code}"
+    api_key = os.environ["DEV_API_KEY"]
+
+    headers = {
+        "Accept": "application/json",
+        "x-api-key": api_key
+    }
+
+    response = requests.get(url, headers=headers).json()
+
+    try:
+        data["borders"] = ", ".join([coco.convert(country, to="name") for country in response["borders"]])
+    except:
+        data["borders"] = f"{country} has no neighboring countries!"
+
+    data["currency"] = f"{list(response['currencies'])[0]} - " \
+                       f"{response['currencies'][list(response['currencies'])[0]]['name']}"
+    data["timezones"] = ", ".join([timezone for timezone in response["timezones"]])
+    data["capital"] = ", ".join([capital for capital in response["capital"]])
+    data["languages"] = ", ".join(response["languages"].values())
+    data["subregion"] = response["subregion"]
+    data["flag"] = response["flags"]["png"]
+
+    return data
+
+
 def get_map(visited_destinations, planned_to_visit_destinations):
     visited = [coco.convert(d.destination.country, to="ISO3") for d in visited_destinations]
     plan_to_visit = [coco.convert(d.destination.country, to="ISO3") for d in planned_to_visit_destinations]
@@ -81,7 +111,8 @@ def get_map(visited_destinations, planned_to_visit_destinations):
         color_discrete_map={"Visited": "green", "Plan to Visit": "blue"}
     )
 
-    fig.update_layout(autosize=True, margin=dict(l=0, r=0, b=0, t=0), legend=dict(x=0.5, y=0.0, xanchor='center', yanchor='top',  orientation='h'),
+    fig.update_layout(autosize=True, margin=dict(l=0, r=0, b=0, t=0),
+                      legend=dict(x=0.5, y=0.0, xanchor='center', yanchor='top', orientation='h'),
                       legend_title=dict(text=''))
 
     html_plot = pyo.plot(fig, output_type='div', auto_open=False, show_link=False)

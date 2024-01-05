@@ -3,7 +3,8 @@ from model import db, Destination, User, DestinationToUser
 from api import app as api_blueprint
 from api import swaggerui_blueprint
 from form import RegistrationForm, LoginForm
-from helper_functions import get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map, get_title
+from helper_functions import (get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map,
+                              get_title, get_info)
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 import random
@@ -95,9 +96,10 @@ def get_most_visited():
 @app.route("/<city>")
 def display_city(city):
     destination = Destination.query.filter_by(city=city).first()
-    weather = get_weather(city)
 
     if destination:
+        weather = get_weather(city)
+        country_info = get_info(destination.country)
 
         if current_user.is_authenticated:
 
@@ -113,11 +115,12 @@ def display_city(city):
                 status='plan_to_visit'
             ).first()
 
-            return render_template("city.html", destination=destination, weather=weather, current_user=current_user,
-                                   is_visited=visited_destination is not None,
-                                   is_planned_to_visit=planned_to_visit_destination is not None,)
+            return render_template("city.html", destination=destination, weather=weather, country_info=country_info,
+                                   current_user=current_user, is_visited=visited_destination is not None,
+                                   is_planned_to_visit=planned_to_visit_destination is not None)
 
-        return render_template("city.html", destination=destination, weather=weather, current_user=current_user)
+        return render_template("city.html", destination=destination, weather=weather, country_info=country_infom,
+                               current_user=current_user)
 
     return render_template("404.html")
 

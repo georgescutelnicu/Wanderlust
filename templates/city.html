@@ -45,71 +45,96 @@
 
 {% endif %}
 
-<h1 class="topm pb1" style="text-align:center;">
-    What is {{ destination.city }} known for:
-</h1>
-<section class="tm-banner">
-    <p id="popular">{{ destination.popular_attractions }}</p>
-    <div class="bbox">
-        <div class="cell">
+<div class="tm-page-wrap mx-auto">
+    <h1 class="topm pb1" style="text-align:center;">
+        What is {{ destination.city }} known for:
+    </h1>
+    <section class="tm-banner">
+        <p id="popular">{{ destination.popular_attractions }}</p>
+        <div class="bbox">
+            <div class="cell">
 
-      {% for k, v in destination.to_dict()['ratings']|dictsort(true, 'value')|reverse  %}
-        {% if v > 1 %}
+          {% for k, v in destination.to_dict()['ratings']|dictsort(true, 'value')|reverse  %}
+            {% if v > 1 %}
 
-            <div class="scores">
-                <p style="width:100%">{{ k.replace('_', ' ') }}</p>
-                <meter max="5" value="{{ v }}">{{ v }}</meter>
-             </div>
+                <div class="scores">
+                    <p style="width:100%">{{ k.replace('_', ' ') }}</p>
+                    <meter max="5" value="{{ v }}">{{ v }}</meter>
+                 </div>
 
-        {% endif %}
-      {% endfor %}
+            {% endif %}
+          {% endfor %}
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<h1 class="topm" style="text-align:center;">
-    Weather forecasting:
-</h1>
+    <h1 class="topm" style="text-align:center;">
+        Weather forecasting:
+    </h1>
 
-{% if weather %}
+    {% if weather %}
 
-<section class="tm-banner topm">
-    <div class="container">
-        <div class="row" style="text-align: center; justify-content: center;">
+    <section class="tm-banner topm">
+        <div class="container">
+            <div class="row" style="text-align: center; justify-content: center;">
 
-            {% for date, info in weather.items() %}
+                {% for date, info in weather.items() %}
 
-                    <div style="margin: auto;">
-                        <img src="{{ url_for('static', filename='weather-icons/' ~ info['description'] ~ '.png') }}" alt="{{ info['description'] }}">
-                        <p><strong>{{ date }} {{ info['temp'] }}°C</strong></p>
-                    </div>
+                        <div style="margin: auto;">
+                            <img src="{{ url_for('static', filename='weather-icons/' ~ info['description'] ~ '.png') }}" alt="{{ info['description'] }}">
+                            <p><strong>{{ date }} {{ info['temp'] }}°C</strong></p>
+                        </div>
 
-            {% endfor %}
+                {% endfor %}
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% endif %}
+    {% endif %}
 
-<h1 class="topm pb1" style="text-align:center;">
-    Flight tickets:
-</h1>
-<section class="tm-banner topm" style="text-align: center;">
-<div id="widget-holder"></div>
-<script
-data-width="73.5%"
-data-currency="EUR"
-data-lang="en"
-data-affilid="georgesgvtravelproject"
-data-from="OTP"
-data-limit="10"
-data-tile-limit="8"
-data-sort-by="best"
-data-primary-color="69c6ba"
-src="https://widgets.kiwi.com/scripts/widget-search-iframe.js">
-</script>
-</section>
+    <h1 class="topm pb1" style="text-align:center;">
+        Flight tickets:
+    </h1>
+    <section class="tm-banner topm" style="text-align: center;">
+        <div id="widget-holder"></div>
+        <script
+        data-width="73.5%"
+        data-currency="EUR"
+        data-lang="en"
+        data-affilid="georgesgvtravelproject"
+        data-from="OTP"
+        data-limit="10"
+        data-tile-limit="8"
+        data-sort-by="best"
+        data-primary-color="69c6ba"
+        src="https://widgets.kiwi.com/scripts/widget-search-iframe.js">
+        </script>
+    </section>
+
+    <h1 class="topm mb3" style="text-align:center;">
+        {{ destination.country }} FAQ:
+    </h1>
+    <section class="tm-banner pb3">
+        <h4 class="faq">Q: What is the capital of {{ destination.country }}?</h4>
+        <p class="faq-p">A: {{ country_info['capital'] }}</p>
+        <br>
+        <h4 class="faq">Q: What currency does {{ destination.country }} use?</h4>
+        <p class="faq-p">A: {{ country_info['currency'] }}</p>
+        <br>
+        <h4 class="faq">Q: What are the timezones in {{ destination.country }}?</h4>
+        <p class="faq-p">A: {{ country_info['timezones'] }}</p>
+        <br>
+        <h4 class="faq">Q: What countries does {{ destination.country }} border with?</h4>
+        <p class="faq-p">A: {{ country_info['borders'] }}</p>
+        <br>
+        <h4 class="faq">Q: How many languages are spoken here?</h4>
+        <p class="faq-p">A: {{ country_info['languages'] }}</p>
+        <br>
+        <h4 class="faq">Q: In which subregion is it located?</h4>
+        <p class="faq-p">A: {{ country_info['subregion'] }}</p>
+    </section>
+</div>
 
 {% include "footer.html" %}
