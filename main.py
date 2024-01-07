@@ -11,6 +11,7 @@ import random
 import os
 
 
+# Create Flask application, register blueprints and configure database
 app = Flask(__name__)
 app.register_blueprint(api_blueprint, url_prefix='/api')
 app.register_blueprint(swaggerui_blueprint)
@@ -21,19 +22,21 @@ app.json.sort_keys = False
 
 db.init_app(app)
 
+# Create and initialize login manager
 login_manager = LoginManager()
 login_manager.init_app(app)
-
 
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
 
 
+# List of valid columns for filtering and number of destinations to display per page
 VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
 PER_PAGE = 10
 
 
+# Routes
 @app.route("/")
 def home():
     continents = ['Europe', 'North America', 'Asia', 'South America', 'Africa', 'Oceania']

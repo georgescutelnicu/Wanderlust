@@ -11,6 +11,16 @@ import os
 
 
 def get_random_locations_for_continent(continent, num_locations=3):
+    """
+        Get a random selection of locations from a specific continent.
+
+        Args:
+            continent (str): The continent to filter locations.
+            num_locations (int): Number of locations to retrieve.
+
+        Returns:
+            list: List of randomly selected locations.
+    """
     all_locations = db.session.query(Destination).filter_by(continent=continent).all()
     random.shuffle(all_locations)
     selected_locations = all_locations[:num_locations]
@@ -19,6 +29,16 @@ def get_random_locations_for_continent(continent, num_locations=3):
 
 
 def get_pagination_and_page(per_page, total):
+    """
+        Get pagination object and current page number.
+
+        Args:
+            per_page (int): Number of items per page.
+            total (int): Total number of items.
+
+        Returns:
+            Pagination object and current page number.
+    """
     page = int(request.args.get('page', 1))
     pagination = Pagination(page=page, per_page=per_page, total=total, record_name='destinations')
 
@@ -26,6 +46,16 @@ def get_pagination_and_page(per_page, total):
 
 
 def get_weather(city, datetime_to_dayname=True):
+    """
+        Get weather information for a specific city using visualcrossing API.
+
+        Args:
+            city (str): The city name.
+            datetime_to_dayname (bool): Convert datetime to day name.
+
+        Returns:
+            dict: Weather information for the upcoming days.
+    """
     url = f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}?'
     data = {
         "unitGroup": "metric",
@@ -64,6 +94,15 @@ def get_weather(city, datetime_to_dayname=True):
 
 
 def get_info(country):
+    """
+        Get additional information about a country using dev.me API.
+
+        Args:
+            country (str): The country name.
+
+        Returns:
+            dict: Information about the country.
+    """
     data = {}
 
     country_code = coco.convert(country, to="ISO2")
@@ -94,6 +133,16 @@ def get_info(country):
 
 
 def get_map(visited_destinations, planned_to_visit_destinations):
+    """
+       Generate a choropleth map based on visited and planned-to-visit destinations.
+
+       Args:
+           visited_destinations (list): List of visited destinations.
+           planned_to_visit_destinations (list): List of planned-to-visit destinations.
+
+       Returns:
+           str: HTML representation of the choropleth map.
+    """
     visited = [coco.convert(d.destination.country, to="ISO3") for d in visited_destinations]
     plan_to_visit = [coco.convert(d.destination.country, to="ISO3") for d in planned_to_visit_destinations]
 
@@ -121,6 +170,16 @@ def get_map(visited_destinations, planned_to_visit_destinations):
 
 
 def get_title(visited_destinations, planned_to_visit_destinations):
+    """
+       Determine the user's title based on visited and planned-to-visit destinations.
+
+       Args:
+           visited_destinations (list): List of visited destinations.
+           planned_to_visit_destinations (list): List of planned-to-visit destinations.
+
+       Returns:
+           str: User's title.
+    """
     titles = {
         1: "Novice Explorer",
         2: "Epic Explorer",
@@ -145,10 +204,28 @@ def get_title(visited_destinations, planned_to_visit_destinations):
 
 
 def is_valid_api_key(api_key):
+    """
+        Check if the provided API key is valid.
+
+        Args:
+            api_key (str): The API key to validate.
+
+        Returns:
+            bool: True if the API key is valid, False otherwise.
+    """
     return db.session.query(User).filter_by(api_key=api_key).first() is not None
 
 
 def require_valid_api_key(func):
+    """
+        Decorator function to require a valid API key for a specific route.
+
+        Args:
+            func (function): The function to decorate.
+
+        Returns:
+            function: Decorated function with API key validation.
+    """
     def decorated_function(*args, **kwargs):
         api_key = request.args.get("api_key")
         if not api_key or not is_valid_api_key(api_key):

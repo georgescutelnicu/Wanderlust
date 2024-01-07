@@ -9,6 +9,7 @@ import random
 
 app = Blueprint('api', __name__)
 
+# Swagger UI configuration
 SWAGGER_URL = '/api/docs'
 API_URL = '/static/json/openapi.json'
 swaggerui_blueprint = get_swaggerui_blueprint(
@@ -19,12 +20,20 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     }
 )
 
+# List of valid columns for filtering
 VALID_FILTER_COLUMNS = [col.name for col in Destination.__table__.columns]
 
 
+# API Routes
 @app.route("/random", methods=["GET"])
 @require_valid_api_key
 def get_random_destination():
+    """
+        Endpoint to get a random destination from the database.
+
+        Returns:
+            json: Random destination details.
+    """
     all_destinations = db.session.query(Destination).all()
     random_destination = random.choice(all_destinations)
     return jsonify(destination=random_destination.to_dict())
@@ -33,6 +42,12 @@ def get_random_destination():
 @app.route("/all", methods=["GET"])
 @require_valid_api_key
 def get_all_destinations():
+    """
+        Endpoint to get all destinations from the database.
+
+        Returns:
+            json: List of all destinations.
+    """
     all_destinations = db.session.query(Destination).order_by(Destination.id).all()
     return jsonify(destinations=[destination.to_dict() for destination in all_destinations])
 
@@ -40,6 +55,12 @@ def get_all_destinations():
 @app.route("/recent", methods=["GET"])
 @require_valid_api_key
 def get_recent_destinations():
+    """
+        Endpoint to get the most recent destinations from the database.
+
+        Returns:
+            json: List of most recent destinations.
+    """
     recent_destinations = db.session.query(Destination).order_by(Destination.id.desc()).limit(3).all()
 
     if recent_destinations:
@@ -51,6 +72,12 @@ def get_recent_destinations():
 @app.route("/search", methods=["GET"])
 @require_valid_api_key
 def search_destination():
+    """
+        Endpoint to search for destinations based on specified filters.
+
+        Returns:
+            json: List of destinations matching the provided criteria.
+    """
     queries = request.args
     searching_filters = {}
 
@@ -72,6 +99,12 @@ def search_destination():
 @app.route("/add_destination", methods=["POST"])
 @require_valid_api_key
 def add_destination():
+    """
+        Endpoint to add a new destination to the database.
+
+        Returns:
+            json: Confirmation message and details of the new destination.
+    """
     data = request.json
 
     try:
@@ -132,6 +165,15 @@ def add_destination():
 @app.route("/update_destination/<int:destination_id>", methods=["PATCH"])
 @require_valid_api_key
 def update_destination(destination_id):
+    """
+        Endpoint to update an existing destination in the database.
+
+        Args:
+            destination_id (int): ID of the destination to be updated.
+
+        Returns:
+            json: Confirmation message.
+    """
     destination = Destination.query.get(destination_id)
     data = request.get_json()
 
@@ -153,6 +195,15 @@ def update_destination(destination_id):
 @app.route("/delete_destination/<int:destination_id>", methods=["DELETE"])
 @require_valid_api_key
 def delete_destination(destination_id):
+    """
+        Endpoint to delete a destination from the database.
+
+        Args:
+            destination_id (int): ID of the destination to be deleted.
+
+        Returns:
+            json: Confirmation message.
+    """
     destination = Destination.query.get(destination_id)
 
     if not destination:
@@ -167,6 +218,15 @@ def delete_destination(destination_id):
 @app.route('/get_weather/<city>', methods=['GET'])
 @require_valid_api_key
 def destination_weather(city):
+    """
+       Endpoint to get weather data for a specific destination.
+
+       Args:
+           city (str): Name of the city for which weather data is requested.
+
+       Returns:
+           json: Weather information for the specified city.
+    """
     destination = db.session.query(Destination).filter_by(city=city).first()
 
     if destination:

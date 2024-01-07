@@ -4,10 +4,25 @@ from flask_login import UserMixin
 import secrets
 
 
+# Initialize SQLAlchemy
 db = SQLAlchemy()
 
 
 class Destination(db.Model):
+    """
+        Model representing a destination.
+
+        Attributes:
+            id (int): Unique identifier for the destination.
+            continent (str): Continent of the destination.
+            country (str): Country of the destination.
+            city (str): City of the destination.
+            description (str): Description of the destination.
+            budget (str): Budget category of the destination.
+            [Various rating attributes]: Ratings for different aspects of the destination.
+            popular_attractions (str): Popular attractions in the destination.
+            picture (str): URL of the destination picture.
+    """
     id = db.Column(db.Integer, primary_key=True)
     continent = db.Column(db.String(250), nullable=False)
     country = db.Column(db.String(250), nullable=False)
@@ -40,6 +55,12 @@ class Destination(db.Model):
                         default='https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
 
     def to_dict(self):
+        """
+            Convert Destination object to a dictionary.
+
+            Returns:
+                dict: Dictionary representation of the Destination.
+        """
         data = {'id': getattr(self, "id"),
                 'continent': getattr(self, "continent"),
                 'country': getattr(self, "country"),
@@ -56,6 +77,16 @@ class Destination(db.Model):
 
 
 class User(UserMixin, db.Model):
+    """
+        Model representing a user.
+
+        Attributes:
+            id (int): Unique identifier for the user.
+            username (str): User's username.
+            email (str): User's email address.
+            password (str): User's hashed password.
+            api_key (str): User's API key for authentication.
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -63,28 +94,68 @@ class User(UserMixin, db.Model):
     api_key = db.Column(db.String(32), unique=True, nullable=True)
 
     def generate_api_key(self):
+        """
+            Generate a new API key for the user.
+        """
         self.api_key = secrets.token_hex(16)
 
     def add_visited_destination(self, destination):
+        """
+            Add a visited destination for the user.
+
+            Args:
+                destination (Destination): Destination to be added to visited list.
+        """
         association = DestinationToUser(destination_id=destination.id, user_id=self.id, status='visited')
         db.session.add(association)
 
     def add_plan_to_visit_destination(self, destination):
+        """
+            Add a planned-to-visit destination for the user.
+
+            Args:
+                destination (Destination): Destination to be added to planned-to-visit list.
+        """
         association = DestinationToUser(destination_id=destination.id, user_id=self.id, status='plan_to_visit')
         db.session.add(association)
 
     def remove_visited_destination(self, destination):
+        """
+            Remove a visited destination for the user.
+
+            Args:
+                destination (Destination): Destination to be removed from visited list.
+        """
         association = DestinationToUser.query.filter_by(destination_id=destination.id, user_id=self.id,
                                                         status='visited').first()
         db.session.delete(association)
 
     def remove_plan_to_visit_destination(self, destination):
+        """
+            Remove a planned-to-visit destination for the user.
+
+            Args:
+                destination (Destination): Destination to be removed from planned-to-visit list.
+        """
         association = DestinationToUser.query.filter_by(destination_id=destination.id, user_id=self.id,
                                                         status='plan_to_visit').first()
         db.session.delete(association)
 
 
 class DestinationToUser(db.Model):
+    """
+        Model representing association between Destination and User models.
+
+        Attributes:
+            id (int): Unique identifier for the association.
+            destination_id (int): Foreign key for the Destination model.
+            user_id (int): Foreign key for the User model.
+            status (str): Status indicating whether the user visited or plans to visit the destination.
+
+        Relationships:
+            destination (Destination): Relationship with the Destination model.
+            user (User): Relationship with the User model.
+    """
     id = db.Column(db.Integer, primary_key=True)
     destination_id = db.Column(db.Integer, db.ForeignKey('destination.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
