@@ -7,7 +7,7 @@
                 <div class="col-xs-12">
                     <div class="tm-banner-header">
                         <h1 class="text-uppercase tm-banner-title topm">{{ destination.city }}</h1>
-                        <h6>{{ destination.country }}, {{ destination.continent }}</h6>
+                        <h6><img class="flag" src="{{ country_info['flag'] }}"> {{ destination.country }}, {{ destination.continent }}</h6>
                         <br>
                         <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
                         <br>
