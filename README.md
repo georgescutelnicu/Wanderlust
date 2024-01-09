@@ -2,7 +2,7 @@
 
 Travel inspiration platform that includes a user-friendly website for exploring travel destinations and a RESTful API for accessing travel data programmatically.
 
-<img src="extras/banner_repo.png" alt="Wanderlust Banner" width="750">
+<img src="extras/banner_repo.png" alt="Wanderlust Banner" width="800">
 
 ## About
 
