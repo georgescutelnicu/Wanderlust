@@ -321,6 +321,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "picture",
+            "in": "query",
+            "description": "Picture filter",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -567,6 +575,14 @@
             "in": "query",
             "description": "Popular attractions filter",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "picture",
+            "in": "query",
+            "description": "Picture filter",
             "schema": {
               "type": "string"
             }
