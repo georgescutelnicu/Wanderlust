@@ -12,7 +12,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 [Explore Wanderlust Website](https://wanderlust-v4k4.onrender.com/) <br>
 [Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/) <br><br>
-**<ins>QUICK NOTES:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>It may take a few seconds for the website to start.**
+**<ins>QUICK NOTES:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>It may take up to one minute for the demo to start.**
 
 ## Features
 
@@ -25,6 +25,8 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 - **Flight Ticket Booking:** Book your flight tickets with our integrated booking widget.
 - **Intuitive User Interface:** Enjoy a user-friendly and elegant interface for effortless navigation and travel inspiration.
 - **User Account Features:** Sign up and log in to save places to your "visited" or "plan to visit" lists, making your travel planning more accessible.
+- **Interactive Map:** Visualize your travel journey with an interactive map, giving you a geographical overview of your adventures.
+- **Achievements Tracker:** Track your travel achievements and earn badges.
 
 ### Wanderlust API
 
@@ -40,6 +42,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 - **Front-End Development:** HTML, CSS, JS, Bootstrap.
 - **Back-End Development:** Flask (flask_sqlalchemy, flask_login, flask_swagger_ui, flask_paginate, werkzeug.security, etc.), PostgreSQL + SQLAlchemy.
+- **Visualization:** Plotly for interactive choropleth maps.
 - **API Integration:** VisualCrossing API for weather forecasting, Tequila by Kiwi.com for flight ticket booking.
 - **API Docs:** Swagger UI.
 
@@ -47,7 +50,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 ## Credits
 
 - **Data:** Most of the data was gathered from earthroulette.com, a valuable resource for travel information.
-- **Theme:** Created by templatemo and modified by me in order to fit this project.
+- **Theme:** Created by templatemo and modified by me to fit this project.
 
 ---
 
