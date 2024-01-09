@@ -2,7 +2,7 @@
 
 Travel inspiration platform that includes a user-friendly website for exploring travel destinations and a RESTful API for accessing travel data programmatically.
 
-<img src="extras/banner_repo.png" alt="Wanderlust Banner" width="500">
+<img src="extras/banner_repo.png" alt="Wanderlust Banner" width="750">
 
 ## About
 
@@ -46,12 +46,147 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 - **API Integration:** VisualCrossing API for weather forecasting, Tequila by Kiwi.com for flight ticket booking.
 - **API Docs:** Swagger UI.
 
+---
+## API Structure
 
+### 1. Get a Random Destination
+
+- **Endpoint:** `/api/random`
+- **Method:** `GET`
+- **Parameters:**
+  - `api_key` (required)
+ 
+### 2. Get All Destinations
+
+- **Endpoint:** `/api/all`
+- **Method:** `GET`
+- **Parameters:**
+  - `api_key` (required)
+
+### 3. Get Recent Destinations
+
+- **Endpoint:** `/api/recent`
+- **Method:** `GET`
+- **Parameters:**
+  - `api_key` (required)
+
+### 4. Search for Destinations
+
+- **Endpoint:** `/api/search`
+- **Method:** `GET`
+- **Parameters:**
+  - `api_key` (required)
+  - Additional filters:
+    - `continent`
+    - `country`
+    - `city`
+    - `description`
+    - `budget`
+    - `eating_out`
+    - `sightseeing`
+    - `activities`
+    - `shopping`
+    - `nightlife`
+    - `museums`
+    - `kid_friendly`
+    - `beaches`
+    - `skiing`
+    - `diving`
+    - `camping`
+    - `hiking`
+    - `cycling`
+    - `sailing`
+    - `romantic`
+    - `photography`
+    - `popular_attractions`
+    - `picture`
+
+### 5. Add a New Destination
+
+- **Endpoint:** `/api/add_destination`
+- **Method:** `POST`
+- **Parameters:**
+  - `api_key` (required)
+  - `continent` (required)
+  - `country` (required)
+  - `city` (required)
+  - `description` (required)
+  - `popular_attractions` (required)
+  - Additional parameters:
+    - `budget`
+    - `eating_out` 
+    - `sightseeing` 
+    - `activities`
+    - `shopping` 
+    - `nightlife`
+    - `museums` 
+    - `kid_friendly`
+    - `beaches`
+    - `skiing` 
+    - `diving`
+    - `camping`
+    - `hiking`
+    - `cycling` 
+    - `sailing`
+    - `romantic` 
+    - `photography` 
+    - `picture`
+
+### 6. Update a Destination
+
+- **Endpoint:** `/api/update_destination/{destination_id}`
+- **Method:** `PATCH`
+- **Parameters:**
+  - `api_key` (required)
+  - `destination_id` (required)
+  - Additional parameters:
+    - `continent`
+    - `country`
+    - `city` 
+    - `description` 
+    - `popular_attractions` 
+    - `budget` 
+    - `eating_out` 
+    - `sightseeing`
+    - `activities` 
+    - `shopping` 
+    - `nightlife`
+    - `museums` 
+    - `kid_friendly` 
+    - `beaches` 
+    - `skiing` 
+    - `diving` 
+    - `camping`
+    - `hiking` 
+    - `cycling` 
+    - `sailing` 
+    - `romantic`
+    - `photography` 
+    - `picture`
+
+### 7. Delete a Destination
+
+- **Endpoint:** `/api/delete_destination/{destination_id}`
+- **Method:** `DELETE`
+- **Parameters:**
+  - `api_key` (required)
+  - `destination_id` (required)
+
+### 8. Get Weather for a Destination
+
+- **Endpoint:** `/api/get_weather`
+- **Method:** `GET`
+- **Parameters:**
+  - `api_key` (required)
+  - `city` (required)
+
+---
 ## Credits
 
 - **Data:** Most of the data was gathered from earthroulette.com, a valuable resource for travel information.
 - **Theme:** Created by templatemo and modified by me to fit this project.
-
----
+<br>
 
 *This project is open-source, and contributions are welcome. Feel free to fork the repository and submit your pull requests.*
+
+---
