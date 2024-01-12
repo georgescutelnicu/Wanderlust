@@ -14,6 +14,8 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 [Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/) <br><br>
 **<ins>QUICK NOTES:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>It may take up to one minute for the demo to start.**
 
+*Hosted by [Render](https://render.com/)*
+
 ## Features
 
 ### Wanderlust Website
@@ -183,7 +185,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 ---
 ## Credits
 
-- **Data:** Most of the data was gathered from earthroulette.com, a valuable resource for travel information.
+- **Data:** The ratings for each city were gathered from earthroulette.com, a valuable resource for travel information.
 - **Theme:** Created by templatemo and modified by me to fit this project.
 <br>
 
