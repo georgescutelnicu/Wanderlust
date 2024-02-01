@@ -45,7 +45,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 - **Front-End Development:** HTML, CSS, JS, Bootstrap.
 - **Back-End Development:** Flask (flask_sqlalchemy, flask_login, flask_swagger_ui, flask_paginate, werkzeug.security, etc.), PostgreSQL + SQLAlchemy.
 - **Visualization:** Plotly for interactive choropleth maps.
-- **API Integration:** VisualCrossing API for weather forecasting, Tequila by Kiwi.com for flight ticket booking.
+- **API Integration:** VisualCrossing API for weather forecasting, Dev.me API for countries FAQ and Flags, Tequila by Kiwi.com for flight ticket booking.
 - **API Docs:** Swagger UI.
 
 ---
