@@ -207,7 +207,7 @@ def delete_destination(destination_id):
     destination = Destination.query.get(destination_id)
 
     if not destination:
-        return jsonify(error=f"Destination with the id {destination_id} was not found"), 404
+        return jsonify(error=f"Destination with ID {destination_id} was not found"), 404
 
     db.session.delete(destination)
     db.session.commit()
@@ -235,6 +235,6 @@ def destination_weather(city):
         if not weather_data:
             return jsonify(error="Weather data not available for this destination"), 404
 
-        return jsonify(weather_data)
+        return jsonify(weather_data), 200
 
     return jsonify(error="City not found in the database"), 404
