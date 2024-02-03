@@ -227,7 +227,7 @@ def require_valid_api_key(func):
             function: Decorated function with API key validation.
     """
     def decorated_function(*args, **kwargs):
-        api_key = request.args.get("api_key")
+        api_key = request.headers.get("Authorization")
         if not api_key or not is_valid_api_key(api_key):
             return jsonify(error="Invalid API key"), 403
         return func(*args, **kwargs)
