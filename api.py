@@ -151,7 +151,7 @@ def add_destination():
         return jsonify(error="Data error: " + str(e)), 500
 
     except Exception as e:
-        return jsonify(error="An error has occured! Make sure to check the following steps: "                           
+        return jsonify(error="An error has occurred! Make sure to check the following steps: "                           
                              "1. Next fields are mandatory and should be of type string: "
                              "country, continent, description, city, popular_attractions  "
                              "2. Budget field should have a value of either 'affordable', 'moderate', or 'expensive'  "
