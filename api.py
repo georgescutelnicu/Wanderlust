@@ -182,7 +182,35 @@ def update_destination(destination_id):
 
     for field, value in data.items():
         if field in VALID_FILTER_COLUMNS:
-            setattr(destination, field, value)
+
+            if field == "continent":
+                allowed_continents = ['Europe', 'North America', 'Asia', 'South America', 'Africa', 'Oceania']
+
+                if value not in allowed_continents:
+                    return jsonify(
+                        error=f"Invalid continent. Allowed continents: {', '.join(allowed_continents)}. Australia"
+                              f" will be automatically converted to Oceania"), 400
+                elif value.lower() == "australia":
+                    setattr(destination, field, "Oceania")
+                else:
+                    setattr(destination, field, value)
+
+            elif field == "country":
+                country_code = coco.convert(value, to="ISO3")
+
+                if country_code == "not found":
+                    return jsonify(
+                        error=f"{value} is not a valid country name. You can check a list of valid country"
+                              f"names here: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3"), 400
+                setattr(destination, field, value)
+
+            elif field == "city":
+                existing_destination = Destination.query.filter_by(city=value).first()
+                if existing_destination:
+                    return jsonify(error=f"{value} is already in our database"), 400
+
+            else:
+                setattr(destination, field, value)
 
     try:
         db.session.commit()
