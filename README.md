@@ -49,143 +49,52 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 - **API Docs:** Swagger UI.
 
 ---
-## API Structure
+# Wanderlust API
 
-### 1. Get a Random Destination
+## Authorization
 
-- **Endpoint:** `/api/random`
-- **Method:** `GET`
-- **Headers:**
-  - Authorization: `api_key` (required)
+All API requests require the use of a generated API key. You can find your API key, or generate a new one, in your profile tab after registering to Wanderlust.
+To authenticate an API request, you should provide your API key in the `Authorization` header.
 
-### 2. Get All Destinations
+| Headers | Parameter | Description |
+| :--- | :--- | :--- |
+| `Authorization` | `api_key` | **Required**. Your Wanderlust API key |
 
-- **Endpoint:** `/api/all`
-- **Method:** `GET`
-- **Headers:**
-  - Authorization: `api_key` (required)
 
-### 3. Get Recent Destinations
+## Request methods
 
-- **Endpoint:** `/api/recent`
-- **Method:** `GET`
-- **Headers:**
-  - Authorization: `api_key` (required)
+| Method   | Description                                                              |
+| -------- | ------------------------------------------------------------------------ |
+| `GET`    | Used to retrieve a single item or a collection of items.                 |
+| `POST`   | Used when creating new items e.g. a new user, post, comment etc.         |
+| `PATCH`  | Used to update one or more fields on an item e.g. update e-mail of user. |
+| `DELETE` | Used to delete an item.                                                  |
 
-### 4. Search for Destinations
+## Endpoints
 
-- **Endpoint:** `/api/search`
-- **Method:** `GET`
-- **Headers:**
-  - Authorization: `api_key` (required)
-- **Parameters:**
-  - Additional parameters:
-    - `continent`
-    - `country`
-    - `city`
-    - `description`
-    - `budget`
-    - `eating_out`
-    - `sightseeing`
-    - `activities`
-    - `shopping`
-    - `nightlife`
-    - `museums`
-    - `kid_friendly`
-    - `beaches`
-    - `skiing`
-    - `diving`
-    - `camping`
-    - `hiking`
-    - `cycling`
-    - `sailing`
-    - `romantic`
-    - `photography`
-    - `popular_attractions`
-    - `picture`
+| Method   | URL                                        | Description                                |  Parameters Required/Additional                     | 
+| -------- | ------------------------------------------ | ------------------------------------------ |  ------------------------------------------ |
+| `GET`    | `/api/random`                              | Retrieve a random destination.             |  - / -                                                               |
+| `Get`    | `/api/all`                                 | Retrieve all destination.                  |  - / -                                                           |
+| `GET`    | `/api/recent`                              | Retrieve recent added destinations.        |  - / -                                                           |
+| `Get`    | `/api/search`                              | Retrieve searched destinations.            |  - /  `country`, `city`, `description`, `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `popular_attractions`, `picture`|
+| `POST`   | `/api/add_destination`                     | Add new destination.                       |  `continent` `country` `city` `description` `popular_attractions` / `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `picture`|
+| `PATCH`  | `/api/update_destination/{destination_id}` | Update destination at #destination_id.     |  `destination_id` / `continent`, `country`, `city`, `description`, `popular_attractions`, `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `picture`|
+| `DELETE` | `/api/delete_destination/{destination_id}` | Delete destination #destination_id.        |  `destination_id` / -                                               |
+| `GET`    | `/api/get_weather`                         | Retrieve 7-day forecast for a destination. |  `city` / -                                            |
 
-### 5. Add a New Destination
 
-- **Endpoint:** `/api/add_destination`
-- **Method:** `POST`
-- **Headers:**
-  - Authorization: `api_key` (required)
-- **Parameters:**
-  - `continent` (required)
-  - `country` (required)
-  - `city` (required)
-  - `description` (required)
-  - `popular_attractions` (required)
-  - Additional parameters:
-    - `budget`
-    - `eating_out` 
-    - `sightseeing` 
-    - `activities`
-    - `shopping` 
-    - `nightlife`
-    - `museums` 
-    - `kid_friendly`
-    - `beaches`
-    - `skiing` 
-    - `diving`
-    - `camping`
-    - `hiking`
-    - `cycling` 
-    - `sailing`
-    - `romantic` 
-    - `photography` 
-    - `picture`
+## HTTP Response Status Codes
 
-### 6. Update a Destination
-
-- **Endpoint:** `/api/update_destination/{destination_id}`
-- **Method:** `PATCH`
-- **Headers:**
-  - Authorization: `api_key` (required)
-- **Parameters:**
-  - `destination_id` (required)
-  - Additional parameters:
-    - `continent`
-    - `country`
-    - `city` 
-    - `description` 
-    - `popular_attractions` 
-    - `budget` 
-    - `eating_out` 
-    - `sightseeing`
-    - `activities` 
-    - `shopping` 
-    - `nightlife`
-    - `museums` 
-    - `kid_friendly` 
-    - `beaches` 
-    - `skiing` 
-    - `diving` 
-    - `camping`
-    - `hiking` 
-    - `cycling` 
-    - `sailing` 
-    - `romantic`
-    - `photography` 
-    - `picture`
-
-### 7. Delete a Destination
-
-- **Endpoint:** `/api/delete_destination/{destination_id}`
-- **Method:** `DELETE`
-- **Headers:**
-  - Authorization: `api_key` (required)
-- **Parameters:**
-  - `destination_id` (required)
-
-### 8. Get Weather for a Destination
-
-- **Endpoint:** `/api/get_weather`
-- **Method:** `GET`
-- **Headers:**
-  - Authorization: `api_key` (required)
-- **Parameters:**
-  - `city` (required)
+| Code  | Title                     | Description                              |
+| ----- | ------------------------- | ---------------------------------------- |
+| `200` | `OK`                      | Successful request. |
+| `201` | `Created`                 | Successfully created a new resource. |
+| `204` | `No Content`              | Successfully processed request with no content to return. |
+| `400` | `Bad Request`             | Invalid request or request parameters. |
+| `401` | `Unauthorized`            | Unauthorized access. |
+| `404` | `Not Found`               | Resource not found. |
+| `500` | `Internal Server Error`   | Internal server error. |
 
 ---
 ## Credits
