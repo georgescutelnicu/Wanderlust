@@ -240,7 +240,7 @@ def delete_destination(destination_id):
     db.session.delete(destination)
     db.session.commit()
 
-    return jsonify(message=f"Destination with ID {destination_id} has been deleted"), 200
+    return "", 204
 
 
 @app.route('/get_weather/<city>', methods=['GET'])

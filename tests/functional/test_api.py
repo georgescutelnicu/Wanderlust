@@ -146,7 +146,7 @@ def test_delete_destination(client):
 
     destination_id -= 1
 
-    response_200 = client.delete(f"/api/delete_destination/{destination_id}", headers=headers)
+    response_204 = client.delete(f"/api/delete_destination/{destination_id}", headers=headers)
 
-    assert response_200.status_code == 200
-    assert f"Destination with ID {destination_id} has been deleted" in response_200.json["message"]
+    assert response_204.status_code == 204
+
