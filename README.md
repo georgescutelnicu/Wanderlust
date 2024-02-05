@@ -55,30 +55,31 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 - **Endpoint:** `/api/random`
 - **Method:** `GET`
-- **Parameters:**
-  - `api_key` (required)
- 
+- **Headers:**
+  - Authorization: `api_key` (required)
+
 ### 2. Get All Destinations
 
 - **Endpoint:** `/api/all`
 - **Method:** `GET`
-- **Parameters:**
-  - `api_key` (required)
+- **Headers:**
+  - Authorization: `api_key` (required)
 
 ### 3. Get Recent Destinations
 
 - **Endpoint:** `/api/recent`
 - **Method:** `GET`
-- **Parameters:**
-  - `api_key` (required)
+- **Headers:**
+  - Authorization: `api_key` (required)
 
 ### 4. Search for Destinations
 
 - **Endpoint:** `/api/search`
 - **Method:** `GET`
+- **Headers:**
+  - Authorization: `api_key` (required)
 - **Parameters:**
-  - `api_key` (required)
-  - Additional filters:
+  - Additional parameters:
     - `continent`
     - `country`
     - `city`
@@ -107,8 +108,9 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 - **Endpoint:** `/api/add_destination`
 - **Method:** `POST`
+- **Headers:**
+  - Authorization: `api_key` (required)
 - **Parameters:**
-  - `api_key` (required)
   - `continent` (required)
   - `country` (required)
   - `city` (required)
@@ -138,8 +140,9 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 - **Endpoint:** `/api/update_destination/{destination_id}`
 - **Method:** `PATCH`
+- **Headers:**
+  - Authorization: `api_key` (required)
 - **Parameters:**
-  - `api_key` (required)
   - `destination_id` (required)
   - Additional parameters:
     - `continent`
@@ -170,16 +173,18 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 - **Endpoint:** `/api/delete_destination/{destination_id}`
 - **Method:** `DELETE`
+- **Headers:**
+  - Authorization: `api_key` (required)
 - **Parameters:**
-  - `api_key` (required)
   - `destination_id` (required)
 
 ### 8. Get Weather for a Destination
 
 - **Endpoint:** `/api/get_weather`
 - **Method:** `GET`
+- **Headers:**
+  - Authorization: `api_key` (required)
 - **Parameters:**
-  - `api_key` (required)
   - `city` (required)
 
 ---
