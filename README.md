@@ -47,6 +47,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 - **Visualization:** Plotly for interactive choropleth maps.
 - **API Integration:** VisualCrossing API for weather forecasting, Dev.me API for countries FAQ and Flags, Tequila by Kiwi.com for flight ticket booking.
 - **API Docs:** Swagger UI.
+- **Testing:** PyTest.
 
 ---
 # Wanderlust API
@@ -66,8 +67,8 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 | Method   | Description                                                              |
 | -------- | ------------------------------------------------------------------------ |
 | `GET`    | Used to retrieve a single item or a collection of items.                 |
-| `POST`   | Used when creating new items e.g. a new user, post, comment etc.         |
-| `PATCH`  | Used to update one or more fields on an item e.g. update e-mail of user. |
+| `POST`   | Used when creating new items.         |
+| `PATCH`  | Used to update one or more fields on an item. |
 | `DELETE` | Used to delete an item.                                                  |
 
 ## Endpoints
