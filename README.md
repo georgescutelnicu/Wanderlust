@@ -14,6 +14,8 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 [Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/) <br><br>
 **<ins>QUICK NOTES:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>It may take up to one minute for the demo to start.**
 
+*If you don't want to register you can use the following account: Test@yahoo.com - Test1*
+
 *Hosted by [Render](https://render.com/)*
 
 ## Features
@@ -82,8 +84,9 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 | `POST`   | `/api/add_destination`                     | Add new destination.                       |  `continent` `country` `city` `description` `popular_attractions` / `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `picture`|
 | `PATCH`  | `/api/update_destination/{destination_id}` | Update destination at #destination_id.     |  `destination_id` / `continent`, `country`, `city`, `description`, `popular_attractions`, `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `picture`|
 | `DELETE` | `/api/delete_destination/{destination_id}` | Delete destination #destination_id.        |  `destination_id` / -                                               |
-| `GET`    | `/api/get_weather`                         | Retrieve 7-day forecast for a destination. |  `city` / -                                            |
+| `GET`    | `/api/get_weather`                         | Retrieve 7-day forecast for a city. |  `city` / -                                            |
 
+**Note:** The `DELETE /api/delete_destination/{destination_id}` endpoint can only be accessed by the Admin user. Other users do not have the necessary permissions to delete destinations.
 
 ## HTTP Response Status Codes
 
