@@ -47,6 +47,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 - **Visualization:** Plotly for interactive choropleth maps.
 - **API Integration:** VisualCrossing API for weather forecasting, Dev.me API for countries FAQ and Flags, Tequila by Kiwi.com for flight ticket booking.
 - **API Docs:** Swagger UI.
+- **Testing:** PyTest.
 
 ---
 # Wanderlust API
@@ -66,8 +67,8 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 | Method   | Description                                                              |
 | -------- | ------------------------------------------------------------------------ |
 | `GET`    | Used to retrieve a single item or a collection of items.                 |
-| `POST`   | Used when creating new items e.g. a new user, post, comment etc.         |
-| `PATCH`  | Used to update one or more fields on an item e.g. update e-mail of user. |
+| `POST`   | Used when creating new items.         |
+| `PATCH`  | Used to update one or more fields on an item. |
 | `DELETE` | Used to delete an item.                                                  |
 
 ## Endpoints
@@ -95,6 +96,134 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 | `401` | `Unauthorized`            | Unauthorized access. |
 | `404` | `Not Found`               | Resource not found. |
 | `500` | `Internal Server Error`   | Internal server error. |
+
+## Example
+
+When interacting with the Wanderlust API, the format of the response depends on whether you're requesting a single item or a collection of items. The following example illustrates how the API response is structured in these two scenarios:
+
+```
+{
+  "destination": {
+    "id": 4,
+    "continent": "Europe",
+    "country": "Spain",
+    "city": "Barcelona",
+    "budget": "moderate",
+    "ratings": {
+      "eating_out": 5,
+      "sightseeing": 5,
+      "activities": 5,
+      "shopping": 4,
+      "nightlife": 5,
+      "museums": 5,
+      "kid_friendly": 4,
+      "beaches": 4,
+      "skiing": 0,
+      "diving": 3,
+      "camping": 2,
+      "hiking": 3,
+      "cycling": 3,
+      "sailing": 4,
+      "romantic": 5,
+      "photography": 5
+    },
+    "description": "Discover the passion and beauty of Barcelona",
+    "popular_attractions": "Some must-visit attractions in Barcelona include Sagrada Familia, Park Guell, La Rambla, Gothic Quarter, and Casa Batllo.",
+    "picture": "https://images.unsplash.com/photo-1583395838144-09c70d270bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1072&q=80"
+  }
+}
+```
+
+```
+{
+  "destinations": [
+    {
+      "id": 103,
+      "continent": "Oceania",
+      "country": "Vanuatu",
+      "city": "Port-Vila",
+      "budget": "moderate",
+      "ratings": {
+        "eating_out": 3,
+        "sightseeing": 4,
+        "activities": 3,
+        "shopping": 2,
+        "nightlife": 2,
+        "museums": 2,
+        "kid_friendly": 3,
+        "beaches": 5,
+        "skiing": 0,
+        "diving": 5,
+        "camping": 4,
+        "hiking": 4,
+        "cycling": 3,
+        "sailing": 5,
+        "romantic": 4,
+        "photography": 4
+      },
+      "description": "Where adventure meets paradise",
+      "popular_attractions": "Some of the must-see attractions in Port-Vila include the Mele Cascades, Hideaway Island, the National Museum of Vanuatu, and the Port-Vila Market.",
+      "picture": "https://images.unsplash.com/photo-1552643450-44f3e5c7d875?auto=format&fit=crop&q=80&w=1074&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 102,
+      "continent": "Africa",
+      "country": "Morocco",
+      "city": "Casablanca",
+      "budget": "moderate",
+      "ratings": {
+        "eating_out": 5,
+        "sightseeing": 4,
+        "activities": 4,
+        "shopping": 5,
+        "nightlife": 4,
+        "museums": 5,
+        "kid_friendly": 4,
+        "beaches": 4,
+        "skiing": 0,
+        "diving": 3,
+        "camping": 2,
+        "hiking": 2,
+        "cycling": 3,
+        "sailing": 4,
+        "romantic": 4,
+        "photography": 4
+      },
+      "description": "The gateway to Morocco's exotic adventures",
+      "popular_attractions": "The top attractions to visit in Casablanca include Hassan II Mosque, Old Medina, Corniche, and the Royal Palace.",
+      "picture": "https://images.unsplash.com/photo-1538230575309-59dfc388ae36?auto=format&fit=crop&q=80&w=1174&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 101,
+      "continent": "Africa",
+      "country": "Ethiopia",
+      "city": "Lalibela",
+      "budget": "affordable",
+      "ratings": {
+        "eating_out": 3,
+        "sightseeing": 5,
+        "activities": 3,
+        "shopping": 1,
+        "nightlife": 2,
+        "museums": 3,
+        "kid_friendly": 3,
+        "beaches": 0,
+        "skiing": 0,
+        "diving": 0,
+        "camping": 4,
+        "hiking": 5,
+        "cycling": 3,
+        "sailing": 0,
+        "romantic": 3,
+        "photography": 5
+      },
+      "description": "Discover the ancient wonders of Lalibela",
+      "popular_attractions": "Lalibela is famous for its 11 rock-hewn churches that are UNESCO World Heritage Sites.",
+      "picture": "https://images.unsplash.com/photo-1572888195250-3037a59d3578?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ]
+}
+```
 
 ---
 ## Credits
