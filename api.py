@@ -232,15 +232,19 @@ def delete_destination(destination_id):
         Returns:
             json: Confirmation message.
     """
-    destination = Destination.query.get(destination_id)
+    if request.username == "Admin":
+        destination = Destination.query.get(destination_id)
 
-    if not destination:
-        return jsonify(error=f"Destination with ID {destination_id} was not found"), 404
+        if not destination:
+            return jsonify(error=f"Destination with ID {destination_id} was not found"), 404
 
-    db.session.delete(destination)
-    db.session.commit()
+        db.session.delete(destination)
+        db.session.commit()
 
-    return "", 204
+        return "", 204
+
+    else:
+        return jsonify(error="Permission denied. Only Admin can delete destinations."), 403
 
 
 @app.route('/get_weather/<city>', methods=['GET'])
