@@ -150,3 +150,9 @@ def test_delete_destination(client):
 
     assert response_204.status_code == 204
 
+    response_403 = client.delete(f"/api/delete_destination/{destination_id}", headers={
+                                                                              "Authorization": os.environ['API_KEY_2']
+                                                                              })
+
+    assert response_403.status_code == 403
+    assert "Permission denied" in response_403.json["error"]
