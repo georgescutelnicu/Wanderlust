@@ -86,7 +86,7 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 | `DELETE` | `/api/delete_destination/{destination_id}` | Delete destination #destination_id.        |  `destination_id` / -                                               |
 | `GET`    | `/api/get_weather`                         | Retrieve 7-day forecast for a city. |  `city` / -                                            |
 
-**Note:** The `DELETE /api/delete_destination/{destination_id}` endpoint can only be accessed by the Admin user. Other users do not have the necessary permissions to delete destinations.
+**Note:** The `DELETE /api/delete_destination/{destination_id}` endpoint can only be accessed by the Admin user. Other users do not have the necessary permission to delete destinations.
 
 ## HTTP Response Status Codes
 
@@ -103,7 +103,8 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 ## Example
 
 When interacting with the Wanderlust API, the format of the response depends on whether you're requesting a single item or a collection of items. The following example illustrates how the API response is structured in these two scenarios:
-
+<br>
+##### A single item:
 ```
 {
   "destination": {
@@ -136,7 +137,7 @@ When interacting with the Wanderlust API, the format of the response depends on 
   }
 }
 ```
-
+##### A collection of items:
 ```
 {
   "destinations": [
