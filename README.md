@@ -228,6 +228,18 @@ When interacting with the Wanderlust API, the format of the response depends on 
   ]
 }
 ```
+##### Get weather format:
+```
+{
+    '2024-02-14': {'temp': 8, 'description': 'rain'},
+    '2024-02-15': {'temp': 6, 'description': 'partly-cloudy-day'},
+    '2024-02-16': {'temp': 6, 'description': 'clear-day'},
+    '2024-02-17': {'temp': 7, 'description': 'partly-cloudy-day'},
+    '2024-02-18': {'temp': 9, 'description': 'partly-cloudy-day'},
+    '2024-02-19': {'temp': 7, 'description': 'cloudy'},
+    '2024-02-20': {'temp': 4, 'description': 'partly-cloudy-day'}
+}
+```
 
 ---
 ## Credits
