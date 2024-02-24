@@ -36,7 +36,7 @@ def get_random_destination():
     """
     all_destinations = db.session.query(Destination).all()
     random_destination = random.choice(all_destinations)
-    return jsonify(destination=random_destination.to_dict())
+    return jsonify(destination=random_destination.to_dict()), 200
 
 
 @app.route("/all", methods=["GET"])
@@ -49,7 +49,7 @@ def get_all_destinations():
             json: List of all destinations.
     """
     all_destinations = db.session.query(Destination).order_by(Destination.id).all()
-    return jsonify(destinations=[destination.to_dict() for destination in all_destinations])
+    return jsonify(destinations=[destination.to_dict() for destination in all_destinations]), 200
 
 
 @app.route("/recent", methods=["GET"])
@@ -64,9 +64,9 @@ def get_recent_destinations():
     recent_destinations = db.session.query(Destination).order_by(Destination.id.desc()).limit(3).all()
 
     if recent_destinations:
-        return jsonify(destinations=[destination.to_dict() for destination in recent_destinations])
+        return jsonify(destinations=[destination.to_dict() for destination in recent_destinations]), 200
     else:
-        return jsonify(error={"Not found": "No recent destinations found"})
+        return jsonify(error={"Not found": "No recent destinations found"}), 404
 
 
 @app.route("/search", methods=["GET"])
