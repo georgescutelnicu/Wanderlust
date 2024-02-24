@@ -92,6 +92,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "No recent destinations found"
           }
         }
       }
@@ -344,6 +347,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid filter column"
+          },
+          "404": {
+            "description": "No destinations match the provided criteria"
           }
         }
       }
@@ -607,6 +616,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Unexpected fields in the request or destination already in the database"
+          },
+          "500": {
+            "description": "Data error"
           }
         }
       }
@@ -859,6 +874,15 @@
         "responses": {
           "200": {
             "description": "Destination updated successfully"
+          },
+          "400": {
+            "description": "Unexpected fields in the request or destination already in the database"
+          },
+          "404": {
+            "description": "Destination not found"
+          },
+          "500": {
+            "description": "Data error'"
           }
         }
       }
@@ -887,8 +911,14 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Destination deleted successfully"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "404": {
+            "description": "Destination not found"
           }
         }
       }
@@ -919,6 +949,9 @@
         "responses": {
           "200": {
             "description": "Success"
+          },
+          "404": {
+            "description": "Destination not found"
           }
         }
       }
