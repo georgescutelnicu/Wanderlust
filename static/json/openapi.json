@@ -12,7 +12,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -40,7 +40,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -71,7 +71,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -102,7 +102,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -354,7 +354,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -617,7 +617,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -869,7 +869,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
@@ -899,7 +899,7 @@
         "parameters": [
           {
             "name": "api_key",
-            "in": "query",
+            "in": "header",
             "description": "Register to get an api key",
             "required": true,
             "schema": {
