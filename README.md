@@ -14,6 +14,8 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 [Explore Wanderlust API Docs](https://wanderlust-v4k4.onrender.com/api/docs/) <br><br>
 **<ins>QUICK NOTES:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>It may take up to one minute for the demo to start.**
 
+*If you don't want to register you can use the following account: Test@yahoo.com - Test1*
+
 *Hosted by [Render](https://render.com/)*
 
 ## Features
@@ -82,8 +84,9 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 | `POST`   | `/api/add_destination`                     | Add new destination.                       |  `continent` `country` `city` `description` `popular_attractions` / `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `picture`|
 | `PATCH`  | `/api/update_destination/{destination_id}` | Update destination at #destination_id.     |  `destination_id` / `continent`, `country`, `city`, `description`, `popular_attractions`, `budget`, `eating_out`, `sightseeing`, `activities`, `shopping`, `nightlife`, `museums`, `kid_friendly`, `beaches`, `skiing`, `diving`, `camping`, `hiking`, `cycling`, `sailing`, `romantic`, `photography`, `picture`|
 | `DELETE` | `/api/delete_destination/{destination_id}` | Delete destination #destination_id.        |  `destination_id` / -                                               |
-| `GET`    | `/api/get_weather`                         | Retrieve 7-day forecast for a destination. |  `city` / -                                            |
+| `GET`    | `/api/get_weather`                         | Retrieve 7-day forecast for a city. |  `city` / -                                            |
 
+**Note:** The `DELETE /api/delete_destination/{destination_id}` endpoint can only be accessed by the Admin user. Other users do not have the necessary permission to delete destinations.
 
 ## HTTP Response Status Codes
 
@@ -100,7 +103,8 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 ## Example
 
 When interacting with the Wanderlust API, the format of the response depends on whether you're requesting a single item or a collection of items. The following example illustrates how the API response is structured in these two scenarios:
-
+<br>
+##### A single item:
 ```
 {
   "destination": {
@@ -133,7 +137,7 @@ When interacting with the Wanderlust API, the format of the response depends on 
   }
 }
 ```
-
+##### A collection of items:
 ```
 {
   "destinations": [
@@ -222,6 +226,18 @@ When interacting with the Wanderlust API, the format of the response depends on 
       "picture": "https://images.unsplash.com/photo-1572888195250-3037a59d3578?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   ]
+}
+```
+##### Get weather format:
+```
+{
+    '2024-02-14': {'temp': 8, 'description': 'rain'},
+    '2024-02-15': {'temp': 6, 'description': 'partly-cloudy-day'},
+    '2024-02-16': {'temp': 6, 'description': 'clear-day'},
+    '2024-02-17': {'temp': 7, 'description': 'partly-cloudy-day'},
+    '2024-02-18': {'temp': 9, 'description': 'partly-cloudy-day'},
+    '2024-02-19': {'temp': 7, 'description': 'cloudy'},
+    '2024-02-20': {'temp': 4, 'description': 'partly-cloudy-day'}
 }
 ```
 
