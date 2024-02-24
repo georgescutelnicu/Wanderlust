@@ -228,7 +228,7 @@ When interacting with the Wanderlust API, the format of the response depends on 
   ]
 }
 ```
-##### Get weather format:
+##### Get weather request format:
 ```
 {
     '2024-02-14': {'temp': 8, 'description': 'rain'},
@@ -245,7 +245,7 @@ When interacting with the Wanderlust API, the format of the response depends on 
 ## Credits
 
 - **Data:** The ratings for each city were gathered from earthroulette.com, a valuable resource for travel information.
-- **Theme:** Created by templatemo and modified by me to fit this project.
+- **Theme:** One page layout found on templatemo and modified by me to fit this project.
 <br>
 
 *This project is open-source, and contributions are welcome. Feel free to fork the repository and submit your pull requests.*
