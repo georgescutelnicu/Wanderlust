@@ -884,3 +884,8 @@ input[type="submit"]:hover {
 .title span {
     color: #c66995;
 }
+
+#flight {
+    width: 77%;
+    margin: auto;
+}
