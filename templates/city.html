@@ -43,6 +43,24 @@
     </div>
 </section>
 
+{% else %}
+
+<section class="p-5 tm-container-outer tm-bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
+                <p class="mb-4"> Sign up or log in now to start keeping track of your adventures!<br>Once logged in, you can use the 'Add to Visited' or 'Add to Plan to Visit' buttons to track your travel experiences.</p>
+                <a href="/register" class="text-uppercase btn-primary tm-btn">
+                   Sign Up
+                </a>
+                <a href="/login" class="text-uppercase btn-primary tm-btn">
+                   Login
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endif %}
 
 <div class="tm-page-wrap mx-auto">
