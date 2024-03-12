@@ -143,6 +143,29 @@
         <h4 class="faq">Q: In which subregion is it located?</h4>
         <p class="faq-p">A: {{ country_info['subregion'] }}</p>
     </section>
+
+    <div id="map"></div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var url = "https://nominatim.openstreetmap.org/search?format=json&q=" + "{{ destination.city }}";
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                var latitude = parseFloat(data[0].lat);
+                var longitude = parseFloat(data[0].lon);
+
+                var map = L.map('map').setView([latitude, longitude], 12);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                }).addTo(map);
+            })
+            .catch(e => {
+                console.error('Error:', e);
+            });
+    });
+</script>
 
 {% include "footer.html" %}

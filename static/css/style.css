@@ -889,3 +889,9 @@ input[type="submit"]:hover {
     width: 77%;
     margin: auto;
 }
+
+#map {
+    height: 250px;
+    border: 2px solid #69c6ba;
+    margin-top: 3%;
+}
