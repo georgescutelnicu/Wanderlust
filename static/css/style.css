@@ -724,7 +724,7 @@ img {
 
 #popular{
     text-align: center;
-    margin-bottom: 4%;
+    margin: 0% 6% 4%;
     font-size: medium;
     color: black;
 }
@@ -749,6 +749,7 @@ img {
 .scores {
     display: inline-block;
     text-transform: uppercase;
+    text-align:center;
     color: black;
     width: 200px;
     margin-right: 5%;
