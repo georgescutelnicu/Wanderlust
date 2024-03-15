@@ -16,7 +16,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
     config={
-        'app_name': "Test application"
+        'app_name': "Wanderlust API"
     }
 )
 
