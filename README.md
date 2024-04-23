@@ -251,8 +251,9 @@ When interacting with the Wanderlust API, the format of the response depends on 
 
 - **Data:** The ratings for each city were gathered from earthroulette.com, a valuable resource for travel information.
 - **Theme:** One page layout found on templatemo and modified by me to fit this project.
+- **Photos:** All the pictures were gathered from Unsplash.
 <br>
 
-*This project is open-source, and contributions are welcome. Feel free to fork the repository and submit your pull requests.*
+*Join Wanderlust and be part of the journey!*
 
 ---
