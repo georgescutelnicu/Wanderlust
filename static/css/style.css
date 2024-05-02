@@ -840,6 +840,12 @@ input[type="submit"]:hover {
     }
 }
 
+@media (max-width: 767px) {
+    .profile-anchor {
+        font-size: 11px;
+    }
+}
+
 .map {
     text-align: center;
 }
