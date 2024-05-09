@@ -252,7 +252,10 @@ def profile(username):
         status='plan_to_visit'
     ).join(Destination).all()
 
-    map_url = get_map(visited_destinations, planned_to_visit_destinations)
+    is_mobile = any(device in str(request.user_agent).lower()
+                    for device in ['android', 'iphone', 'ipad', 'windows phone'])
+
+    map_url = get_map(visited_destinations, planned_to_visit_destinations, is_mobile)
     title = get_title(visited_destinations, planned_to_visit_destinations)
 
     return render_template("profile.html", current_user=current_user, visited_destinations=visited_destinations,

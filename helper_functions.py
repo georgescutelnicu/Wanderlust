@@ -132,13 +132,14 @@ def get_info(country):
     return data
 
 
-def get_map(visited_destinations, planned_to_visit_destinations):
+def get_map(visited_destinations, planned_to_visit_destinations, is_mobile):
     """
        Generate a choropleth map based on visited and planned-to-visit destinations.
 
        Args:
            visited_destinations (list): List of visited destinations.
            planned_to_visit_destinations (list): List of planned-to-visit destinations.
+           is_mobile (bool): A boolean indicating whether the user is accessing the site from a mobile device.
 
        Returns:
            str: HTML representation of the choropleth map.
@@ -159,6 +160,9 @@ def get_map(visited_destinations, planned_to_visit_destinations):
         color="Status",
         color_discrete_map={"Visited": "green", "Plan to Visit": "blue"}
     )
+
+    if is_mobile:
+        fig.update_layout(width=333)
 
     fig.update_layout(autosize=True, margin=dict(l=0, r=0, b=0, t=0),
                       legend=dict(x=0.5, y=0.0, xanchor='center', yanchor='top', orientation='h'),
