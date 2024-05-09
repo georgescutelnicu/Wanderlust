@@ -663,10 +663,6 @@ footer p { color: white; }
     }
 }
 
-.topm {
-    margin-top: 5%;
-}
-
 .topp {
     padding-top: 5%;
 }
@@ -681,6 +677,14 @@ footer p { color: white; }
 
 .pt1 {
     padding-top: 1%;
+}
+
+.m1 {
+    margin: 1%;
+}
+
+.topm {
+    margin-top: 5%;
 }
 
 .mb3 {
