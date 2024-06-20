@@ -17,9 +17,9 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 *If you don't want to register you can use the following account: Test@yahoo.com - Test1* <br><br>
 
 Hosted by [AWS](https://aws.amazon.com/) using the following architecture:
-- **EC2**: Provides scalable computing power.
-- **RDS PostgreSQL**: Offers reliable and scalable relational database storage.
-- **Internet Gateway**: Ensures efficient network connectivity.
+- **EC2**
+- **RDS PostgreSQL**
+- **Internet Gateway**
 <br>
 <img src="extras/aws.png" alt="AWS Diagram" width="800">
 
