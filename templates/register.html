@@ -38,6 +38,13 @@
                 <div class="input-div">
                     {{ form.submit() }}
                 </div>
+
+                <div class="input-div">
+                    <button type="button" id="demo" onclick="window.location.href='{{ url_for('login') }}'">
+                        Use A Demo Account
+                    </button>
+                </div>
+
             </form>
 
         </div>

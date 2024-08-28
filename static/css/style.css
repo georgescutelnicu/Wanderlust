@@ -805,7 +805,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     border-radius: 3px;
 }
 
-input[type="submit"] {
+input[type="submit"], #demo {
     width: 100%;
     background-color: #69c6ba;
     color: #fff;
@@ -815,7 +815,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, #demo:hover {
     background-color: #c66995b3;
 }
 
