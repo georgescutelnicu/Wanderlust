@@ -10,11 +10,18 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 ## Explore
 
-[Explore Wanderlust Website](http://ec2-3-76-8-165.eu-central-1.compute.amazonaws.com/) <br>
-[Explore Wanderlust API Docs](http://ec2-3-76-8-165.eu-central-1.compute.amazonaws.com/api/docs/) <br><br>
+<a href="http://ec2-3-76-8-165.eu-central-1.compute.amazonaws.com/api/docs">
+    <img src="https://img.shields.io/badge/API Docs-85EA2D?logo=swagger&logoColor=000&style=for-the-badge"></img>
+</a>
+<br>
+<a href="http://ec2-3-76-8-165.eu-central-1.compute.amazonaws.com//">
+    <img src="https://img.shields.io/badge/Website-232F3E?logo=amazonwebservices&logoColor=fff&style=for-the-badge"></img>
+</a>
+<br><br>
+
 **<ins>QUICK NOTE:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>**
 
-*If you don't want to register you can use the following account: Test@yahoo.com - Test1* <br><br>
+*If you don't want to register you can use the following account: Test@yahoo.com - Test1* which is also showcased at the login/register page.<br><br>
 
 Hosted by [AWS](https://aws.amazon.com/) using the following architecture:
 - **EC2**
