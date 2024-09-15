@@ -850,6 +850,37 @@ input[type="submit"]:hover, #demo:hover {
     }
 }
 
+.respin {
+    text-align: center;
+}
+
+.respin-btn {
+    --color: #69c6ba;
+    --hover: #69c6ba;
+    color: var(--color) !important;
+    background: none;
+    border: 2px solid var(--color);
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0.5em;
+    padding: 1.2em 2.5em;
+    font-size: 1.1em;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.25s;
+    box-shadow: 0.3em 0.3em 0 0 var(--color), inset 0.3em 0.3em 0 0 var(--color);
+    cursor: pointer;
+    outline: none;
+}
+
+.respin-btn:hover, .respin-btn:focus {
+    box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
+    border-color: var(--hover);
+    background-color: var(--hover);
+    color: #fff !important
+}
+
 .map {
     text-align: center;
 }
