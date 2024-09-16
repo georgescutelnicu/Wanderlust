@@ -162,6 +162,15 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
+        function displayFallback() {
+            var mapContainer = document.getElementById('map');
+            mapContainer.removeAttribute("id");
+            mapContainer.setAttribute('id', 'map-err');
+            mapContainer.textContent = "Sorry, we couldn't load a map for this city." +
+                                       "Try searching for another location to view a map.";
+        }
+
         var url = "https://nominatim.openstreetmap.org/search?format=json&q=" + "{{ destination.city }}";
         fetch(url)
             .then(response => response.json())
@@ -176,8 +185,8 @@
             })
             .catch(e => {
                 console.error('Error:', e);
+                displayFallback();
             });
     });
 </script>
-
 {% include "footer.html" %}
