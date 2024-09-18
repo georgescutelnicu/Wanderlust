@@ -69,7 +69,7 @@ Hosted by [AWS](https://aws.amazon.com/) using the following architecture:
 ## Authorization
 
 All API requests require the use of a generated API key. You can find your API key, or generate a new one, in your profile tab after registering to Wanderlust.
-To authenticate an API request, you should provide your API key in the `Authorization` header.
+To authenticate an API request, you should provide your API key in the `Authorization` header (also works if you provide api_key as a parameter).
 
 | Headers | Parameter | Description |
 | :--- | :--- | :--- |
@@ -240,7 +240,7 @@ When interacting with the Wanderlust API, the format of the response depends on 
   ]
 }
 ```
-##### Get weather request format:
+##### Get weather request output format:
 ```
 {
     '2024-02-14': {'temp': 8, 'description': 'rain'},
@@ -256,9 +256,14 @@ When interacting with the Wanderlust API, the format of the response depends on 
 ---
 ## Credits
 
-- **Data:** The ratings for each city were gathered from earthroulette.com, a valuable resource for travel information.
+- **Data:** The ratings for cities were gathered from [earthroulette](https://earthroulette.com), a valuable resource for travel information.
 - **Theme:** One page layout found on templatemo and modified by me to fit this project.
 - **Photos:** All the pictures were gathered from Unsplash.
+
+## License
+
+This project is licensed under the MIT License.
+
 <br>
 
 *Join Wanderlust and be part of the journey!*
