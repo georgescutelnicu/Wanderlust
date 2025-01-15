@@ -10,12 +10,16 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 ## Explore
 
-<a href="http://ec2-3-76-8-165.eu-central-1.compute.amazonaws.com/api/docs">
+The project is now hosted on [Render](https://render.com/) after the expiration of the AWS free tier.<br>
+Please note that it may take up to 30 seconds to start when first accessed, as I am using a free instance on Render. <br>
+This is due to the instance spinning down after a period of inactivity. Once it's warmed up, the loading times will be faster.
+
+<a href="https://wanderlust-v4k4.onrender.com/api/docs/">
     <img src="https://img.shields.io/badge/API Docs-85EA2D?logo=swagger&logoColor=000&style=for-the-badge"></img>
 </a>
 <br>
-<a href="http://ec2-3-76-8-165.eu-central-1.compute.amazonaws.com//">
-    <img src="https://img.shields.io/badge/Website-232F3E?logo=amazonwebservices&logoColor=fff&style=for-the-badge"></img>
+<a href="https://wanderlust-v4k4.onrender.com/">
+    <img src="https://img.shields.io/badge/Wanderlust-000?logo=render&logoColor=fff&style=for-the-badge"></img>
 </a>
 <br><br>
 
@@ -23,12 +27,12 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 
 *If you don't want to register you can use the following account: Test@yahoo.com - Test1* which is also showcased at the login/register page.<br><br>
 
-Hosted by [AWS](https://aws.amazon.com/) using the following architecture:
-- **EC2**
-- **RDS PostgreSQL**
-- **Internet Gateway**
+~~Hosted by [AWS](https://aws.amazon.com/) using the following architecture:~~
+- ~~**EC2**~~
+- ~~**RDS PostgreSQL**~~
+- ~~**Internet Gateway**~~
 <br>
-<img src="extras/aws.png" alt="AWS Diagram" width="800">
+<img src="extras/aws.png" alt="AWS Diagram" width="700">
 
 ## Features
 
