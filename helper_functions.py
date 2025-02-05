@@ -95,7 +95,7 @@ def get_weather(city, datetime_to_dayname=True):
 
 def get_info(country):
     """
-        Get additional information about a country using dev.me API.
+        Get additional information about a country using RESTCOUNTRIES API.
 
         Args:
             country (str): The country name.
@@ -106,28 +106,23 @@ def get_info(country):
     data = {}
 
     country_code = coco.convert(country, to="ISO2")
-    url = f"https://api.dev.me/v1-get-country-details?code={country_code}"
-    api_key = os.environ["DEV_API_KEY"]
+    url = f"https://restcountries.com/v3.1/alpha/{country_code}"
 
-    headers = {
-        "Accept": "application/json",
-        "x-api-key": api_key
-    }
-
-    response = requests.get(url, headers=headers).json()
+    response = requests.get(url).json()
 
     try:
-        data["borders"] = ", ".join([coco.convert(country, to="name") for country in response["borders"]])
+        data["borders"] = ", ".join([coco.convert(country, to="name") for country in response[0]["borders"]])
     except:
         data["borders"] = f"{country} has no neighboring countries!"
 
-    data["currency"] = f"{list(response['currencies'])[0]} - " \
-                       f"{response['currencies'][list(response['currencies'])[0]]['name']}"
-    data["timezones"] = ", ".join([timezone for timezone in response["timezones"]])
-    data["capital"] = ", ".join([capital for capital in response["capital"]])
-    data["languages"] = ", ".join(response["languages"].values())
-    data["subregion"] = response["subregion"]
-    data["flag"] = response["flags"]["png"]
+    data["currencies"] = ", ".join(
+        f"{code} ({details['name']})" for code, details in response[0]["currencies"].items()
+    )
+    data["timezones"] = ", ".join([timezone for timezone in response[0]["timezones"]])
+    data["capital"] = ", ".join([capital for capital in response[0]["capital"]])
+    data["languages"] = ", ".join(response[0]["languages"].values())
+    data["subregion"] = response[0]["subregion"]
+    data["flag"] = response[0]["flags"]["png"]
 
     return data
 
