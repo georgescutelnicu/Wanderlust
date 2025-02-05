@@ -11,7 +11,7 @@ Wanderlust is a comprehensive Travel Destination Platform that combines a user-f
 ## Explore
 
 The project is now hosted on [Render](https://render.com/) after the expiration of the AWS free tier.<br>
-Please note that it may take up to 50 seconds to start when first accessed, as I am using a free instance on Render. <br>
+Please note that it may take up to 1 minute to start when first accessed, as I am using a free instance on Render. <br>
 This is due to the instance spinning down after a period of inactivity. Once it's warmed up, the loading times will be faster.
 
 <a href="https://wanderlust-v4k4.onrender.com/api/docs/">
@@ -63,7 +63,7 @@ This is due to the instance spinning down after a period of inactivity. Once it'
 - **Front-End Development:** HTML, CSS, JS, Bootstrap.
 - **Back-End Development:** Flask, PostgreSQL + SQLAlchemy.
 - **Visualization:** Plotly for interactive choropleth maps, Leaflet for visualizing city maps.
-- **API Integration:** VisualCrossing API for weather forecasting, Dev.me API for countries FAQ and Flags, Nominatim API for geocoding, trip.com for flight ticket booking.
+- **API Integration:** VisualCrossing API for weather forecasting, RestCountries API for countries FAQ and Flags, Nominatim API for geocoding, trip.com for flight ticket booking.
 - **API Docs:** Swagger UI.
 - **Testing:** PyTest.
 
