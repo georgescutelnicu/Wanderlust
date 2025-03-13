@@ -14,11 +14,11 @@ The project is now hosted on [Render](https://render.com/) after the expiration 
 Please note that it may take up to 1 minute to start when first accessed, as I am using a free instance on Render. <br>
 This is due to the instance spinning down after a period of inactivity. Once it's warmed up, the loading times will be faster.
 
-<a href="https://wanderlust-v4k4.onrender.com/api/docs/">
+<a href="https://wanderlust-bnh1.onrender.com/api/docs/">
     <img src="https://img.shields.io/badge/API Docs-85EA2D?logo=swagger&logoColor=000&style=for-the-badge"></img>
 </a>
 <br>
-<a href="https://wanderlust-v4k4.onrender.com/">
+<a href="https://wanderlust-bnh1.onrender.com/">
     <img src="https://img.shields.io/badge/Wanderlust-000?logo=render&logoColor=fff&style=for-the-badge"></img>
 </a>
 <br><br>
