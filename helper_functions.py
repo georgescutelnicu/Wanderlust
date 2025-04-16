@@ -105,24 +105,22 @@ def get_info(country):
     """
     data = {}
 
-    country_code = coco.convert(country, to="ISO2")
-    url = f"https://restcountries.com/v3.1/alpha/{country_code}"
+    country_code = coco.convert(country, to="ISO3")
+    url = f"https://www.apicountries.com/alpha/{country_code}"
 
     response = requests.get(url).json()
 
     try:
-        data["borders"] = ", ".join([coco.convert(country, to="name") for country in response[0]["borders"]])
+        data["borders"] = ", ".join([coco.convert(country, to="name") for country in response["borders"]])
     except:
         data["borders"] = f"{country} has no neighboring countries!"
 
-    data["currencies"] = ", ".join(
-        f"{code} ({details['name']})" for code, details in response[0]["currencies"].items()
-    )
-    data["timezones"] = ", ".join([timezone for timezone in response[0]["timezones"]])
-    data["capital"] = ", ".join([capital for capital in response[0]["capital"]])
-    data["languages"] = ", ".join(response[0]["languages"].values())
-    data["subregion"] = response[0]["subregion"]
-    data["flag"] = response[0]["flags"]["png"]
+    data["currencies"] = ", ".join(f"{currency['name']}({currency['code']})" for currency in response["currencies"])
+    data["timezones"] = ", ".join([timezone for timezone in response["timezones"]])
+    data["capital"] = response["capital"]if country_code != "ZAF" else "Pretoria, Bloemfontein, Cape Town"
+    data["languages"] = ", ".join(lang["name"] for lang in response["languages"])
+    data["subregion"] = response["subregion"]
+    data["flag"] = response["flags"]["png"]
 
     return data
 
