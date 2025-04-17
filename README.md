@@ -63,7 +63,7 @@ This is due to the instance spinning down after a period of inactivity. Once it'
 - **Front-End Development:** HTML, CSS, JS, Bootstrap.
 - **Back-End Development:** Flask, PostgreSQL + SQLAlchemy.
 - **Visualization:** Plotly for interactive choropleth maps, Leaflet for visualizing city maps.
-- **API Integration:** VisualCrossing API for weather forecasting, RestCountries API for countries FAQ and Flags, Nominatim API for geocoding, trip.com for flight ticket booking.
+- **API Integration:** VisualCrossing API for weather forecasting, APICountries for countries FAQ and Flags, Nominatim API for geocoding, trip.com for flight ticket booking.
 - **API Docs:** Swagger UI.
 - **Testing:** PyTest.
 
