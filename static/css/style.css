@@ -133,13 +133,6 @@ p:last-child { margin-bottom: 0; }
     background-size: cover;
 }
 
-.tm-banner-ab {
-    background: url(../img/about.jpg) center top no-repeat;
-    min-height: 720px;
-    position: relative;
-    background-size: cover;
-}
-
 .tm-banner-row {
     position: relative;
     z-index: 100;
@@ -942,4 +935,42 @@ input[type="submit"]:hover, #demo:hover {
     padding: 30px;
     font-size: 1.2rem;
     text-align: center;
+}
+
+.about-banner {
+    background: url('https://discover-destinations.com/wp-content/uploads/2018/06/ryan-waring-366060-unsplash.jpg') bottom;
+    height: 250px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-title {
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 60px;
+    line-height: 1.3em;
+}
+
+.about-info {
+    color: #000;
+    text-align: center;
+}
+
+.about-info p {
+    font-size: 14px;
+}
+
+.about-photo {
+    display: flex;
+    width: 75%;
+    margin: auto;
+}
+
+@media (max-width: 991px) {
+    .about-title {
+        margin-top: 7.5%;
+    }
 }

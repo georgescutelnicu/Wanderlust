@@ -1,29 +1,13 @@
 {% include "header.html" %}
 
 <section class="tm-banner">
-    <div class="tm-container-outer tm-banner-ab">
-        <div class="container">
-            <div class="row tm-banner-row tm-banner-row-header">
-                <div class="col-xs-12">
-                    <div class="tm-banner-header">
-                        <br><br><br>
-                        <h1 class="text-uppercase tm-banner-title topm">About</h1>
-                        <img src="{{ url_for('static', filename='img/dots-3.png') }}" alt="Dots">
-                        <p class="tm-banner-subtitle">Wanderlust</p>
-                        <br><br>
-                        <a href="https://github.com/georgescutelnicu/Wanderlust" class="text-uppercase btn-primary tm-btn topm">Codebase on GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row tm-banner-row topm" id="tm-section-search">
-                <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>
-            </div>
-            <div class="tm-banner-overlay"></div>
-        </div>
-    </div>
+  <div class="tm-container-outer about-banner">
+    <h1 class="about-title">ABOUT</h1>
+  </div>
 </section>
 
-<section class="p-5 tm-container-outer tm-bg-gray mb3">
+
+<section class="p-5 tm-container-outer tm-bg-gray">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
@@ -39,68 +23,50 @@
     </div>
 </section>
 
-<div class="tm-container-outer">
-    <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse mb3">
-        <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight mr6">
-            <h2 class="">Wanderlust</h2>
-            <ul>
-                <li><strong class="fw900">Random Destination Discovery:</strong> Experience the thrill of spontaneity by exploring random travel destinations.</li>
-                <li><strong class="fw900">In-Depth City Insights:</strong> Discover cities with comprehensive pages showcasing popular attractions, ratings, FAQ and valuable insights.</li>
-                <li><strong class="fw900">Tailored Travel Planning:</strong> Explore the world's most visited destinations or narrow down your choices by continent for focused travel planning.</li>
-                <li><strong class="fw900">Real-Time Weather Forecast:</strong> Stay prepared with 7-day weather forecasting for each city on your itinerary.</li>
-                <li><strong class="fw900">Flight Ticket Booking:</strong> Book your flight tickets with our integrated booking widget.</li>
-                <li><strong class="fw900">Intuitive User Interface:</strong> Enjoy a user-friendly and elegant interface for effortless navigation and travel inspiration.</li>
-                <li><strong class="fw900">User Account Features:</strong> Sign up and log in to save places to your "visited" or "plan to visit" lists, making your travel planning more accessible.</li>
-                <li><strong class="fw900">Interactive Map:</strong> Visualize your travel journey with an interactive map, giving you a geographical overview of your adventures</li>
-                <li><strong class="fw900">Achievements Tracker:</strong> Track your travel achievements and earn badges.</li>
-            </ul>
+<div class="tm-container-outer" id="tm-section-2" style="background: #fff;">
+    <section class="tm-slideshow-section">
+        <div class="tm-slideshow">
+            <img class="about-photo" src="{{ url_for('static', filename='img/about-01.png') }}" alt="Image">
+        </div>
+        <div class="tm-slideshow-description about-info">
+            <h3>Discover New Destinations</h3>
+            <p>Wanderlust lets you dive into cities around the world with detailed and structured data.
+                Each destination offers ratings on categories like food, nightlife, sightseeing, hiking, beaches,
+                shopping, museums, and more, helping you understand what each place truly offers.
+                You’ll also get a real-time weather forecast and an integrated flight ticket booking widget to plan
+                and book your trip confidently. Whether you're exploring urban hubs or nature escapes,
+                Wanderlust gives you the tools to compare, evaluate, and choose your next journey with ease.</p>
         </div>
     </section>
 
-    <section class="tm-slideshow-section mb3">
-        <div class="tm-slideshow-description tm-bg-primary ml6">
-            <h2 class="">Wanderlust API</h2>
-            <ul>
-                <li><strong class="fw900">Effortless Data Retrieval:</strong> Retrieve destination data, including ratings, descriptions etc.</li>
-                <li><strong class="fw900">Advanced Search and Filtering:</strong> Advanced search and filtering capabilities to find destinations that match specific criteria.</li>
-                <li><strong class="fw900">Dynamic Data Updates:</strong> Add new destinations to expand the travel content or update existing details to keep the information fresh.</li>
-                <li><strong class="fw900">Secure Data Deletion:</strong> Maintain data integrity by securely deleting destinations as needed.</li>
-                <li><strong class="fw900">Clear Documentation:</strong> Simplify development with clear and comprehensive API documentation using Swagger UI.</li>
-                <li><strong class="fw900">Error Handling and Validation:</strong> Ensure data integrity and reliability with robust error handling and input validation.</li>
-                <li><strong class="fw900">API Key Integration:</strong>  Sign up to generate a secure and unique API key, allowing you to access the Wanderlust API.</li>
-            </ul>
-
+    <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse">
+        <div class="tm-right tm-slideshow tm-slideshow-highlight">
+            <img class="about-photo" src="{{ url_for('static', filename='img/about-02.png') }}" alt="Image">
+        </div>
+        <div class="tm-slideshow-description tm-slideshow-description-left about-info">
+            <h3>Save Your Spots</h3>
+            <p>Create a personal Wanderlust account to save destinations to your "Visited" and "Plan to Visit" lists.
+                With these features, you can easily organize your travel plans and keep track of where you’ve been or
+                where you want to go next. Use the interactive map to visualize your journey, set future travel goals,
+                and build a detailed travel journal. This makes it simple to revisit your favorite destinations
+                and plan new adventures, all in one place, just a click away.</p>
         </div>
     </section>
 
-    <section class="clearfix tm-slideshow-section tm-slideshow-section-reverse mb3">
-        <div class="tm-slideshow-description tm-slideshow-description-left tm-bg-highlight mr6">
-            <h2 class="">Technologies & Credits</h2>
-            <ul>
-                <li><strong class="fw900">Front-End Development:</strong> HTML, CSS, JS, Bootstrap.</li>
-                <li><strong class="fw900">Back-End Development</strong> Flask (flask_sqlalchemy, flask_login, flask_swagger_ui, flask_paginate, werkzeug.security etc.), PostgresSQL + SQLAlchemy.</li>
-                <li><strong class="fw900">Visualization:</strong> Plotly for interactive choropleth maps, Leaflet for visualizing city maps.</li>
-                <li><strong class="fw900">API Integration:</strong> VisualCrossing API for weather forecasting, APICountries for countries FAQ and Flags,
-                    Nominatim API for geocoding, trip.com for flight ticket booking.</li>
-                <li><strong class="fw900">API Docs:</strong> Swagger UI.</li>
-                <li><strong class="fw900">Data:</strong> Some of the data was gathered from earthroulette.com, a valuable resource for travel information.</li>
-                <li><strong class="fw900">Theme:</strong> One page layout found on templatemo and modified by me to fit this project.</li>
-            </ul>
+    <section class="tm-slideshow-section">
+        <div class="tm-slideshow">
+            <img class="about-photo" src="{{ url_for('static', filename='img/about-03.png') }}" alt="Image">
+        </div>
+        <div class="tm-slideshow-description about-info">
+            <h3>Tap into the API</h3>
+            <p>Wanderlust offers more than just a travel website, developers can access a powerful RESTful API
+                to interact with the platform’s data. The API enables retrieving detailed destination info and real-time
+                weather, as well as adding and updating destinations directly on the platform keeping the travel content
+                fresh and up-to-date. Fully documented and secured with API keys, it’s perfect for creating custom
+                travel apps, research projects, or enhancing existing services with travel data.
+                Jump in now to get your API key and start exploring!</p>
         </div>
     </section>
 </div>
-
-<section class="p-5 tm-container-outer tm-bg-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">
-                <h3 class="text-uppercase mb-4">My Links</h3>
-              <a href="https://georgescutelnicu.github.io/" class="text-uppercase btn-primary tm-btn">Website</a>
-              <a href="https://github.com/georgescutelnicu" class="text-uppercase btn-primary tm-btn">GitHub</a>
-              <a href="https://www.kaggle.com/georgescutelnicu" class="text-uppercase btn-primary tm-btn">Kaggle</a>
-            </div>
-        </div>
-    </div>
-</section>
 
 {% include "footer.html" %}
