@@ -1,37 +1,66 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
+from wtforms.validators import DataRequired, Email, EqualTo, Regexp
+
+
+PASSWORD_REGEX = Regexp(
+    r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+\[\]\.<>\?]).{6,18}$",
+    message=(
+        "Password must be 6 to 18 characters long, include uppercase, lowercase, "
+        "number, and one special character from ~!@#$%^&*()_+[].<>?"
+    )
+)
+
+USER_REGEX = Regexp(
+    r"^[a-zA-Z0-9]{4,16}$",
+    message="Username must be 4 to 16 characters long, containing only letters and numbers with no spaces."
+)
 
 
 class RegistrationForm(FlaskForm):
     """
         Form for user registration.
 
-        Attributes:
-            username (StringField): User's desired username.
+        Fields:
+            username (StringField): User's desired username. 4-16 alphanumeric chars.
             email (StringField): User's email address.
-            password (PasswordField): User's password.
-            confirm_password (PasswordField): Confirm user's password.
-            submit (SubmitField): Submit button for form submission.
+            password (PasswordField): User's password with complexity requirements.
+            confirm_password (PasswordField): Confirmation of the password.
+            submit (SubmitField): Form submit button.
     """
-    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=16),
-                                                   Regexp('^[a-zA-Z0-9]*$',
-                                                          message='Username must contain only letters and numbers.')])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign Up')
+    username = StringField("Username", validators=[
+        DataRequired(message="Username is required."),
+        USER_REGEX
+    ])
+    email = StringField("Email", validators=[
+        DataRequired(message="Email is required."),
+        Email(message="Invalid email address.")
+    ])
+    password = PasswordField("Password", validators=[
+        DataRequired(message="Password is required."),
+        PASSWORD_REGEX
+    ])
+    confirm_password = PasswordField("Confirm Password", validators=[
+        DataRequired(message="Please confirm your password."),
+        EqualTo("password", message="Passwords must match.")
+    ])
+    submit = SubmitField("Sign Up")
 
 
 class LoginForm(FlaskForm):
     """
         Form for user login.
 
-        Attributes:
+        Fields:
             email (StringField): User's email address.
             password (PasswordField): User's password.
-            submit (SubmitField): Submit button for form submission.
+            submit (SubmitField): Form submit button.
     """
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Log In')
+    email = StringField("Email", validators=[
+        DataRequired(message="Email is required."),
+        Email(message="Invalid email address.")
+    ])
+    password = PasswordField("Password", validators=[
+        DataRequired(message="Password is required."),
+    ])
+    submit = SubmitField("Log In")
