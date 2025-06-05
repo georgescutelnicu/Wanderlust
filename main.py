@@ -26,6 +26,7 @@ db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
@@ -205,27 +206,19 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for("home"))
 
     form = LoginForm()
     if form.validate_on_submit():
-        email = form.email.data
-        user = User.query.filter_by(email=email).first()
-
-        if not user:
-            flash("That email does not exist, please try again.")
-            return redirect(url_for('login'))
-
-        password = check_password_hash(user.password, form.password.data)
-
-        if not password:
-            flash('Password incorrect, please try again.')
-            return redirect(url_for('login'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if not user or not check_password_hash(user.password, form.password.data):
+            flash("Invalid email or password.")
+            return redirect(url_for("login"))
 
         login_user(user)
-        return redirect(url_for('home'))
+        return redirect(url_for("home"))
 
-    return render_template('login.html', form=form, errors=form.errors, current_user=current_user)
+    return render_template("login.html", form=form, errors=form.errors, current_user=current_user)
 
 
 @app.route("/logout")
