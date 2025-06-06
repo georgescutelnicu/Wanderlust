@@ -6,12 +6,12 @@ Travel inspiration platform that includes a user-friendly website for exploring 
 
 ## About
 
-Wanderlust is a comprehensive Travel Destination Platform that combines a user-friendly website and a powerful RESTful API. The website offers an interactive user-friendly interface where you can discover travel destinations, view detailed city information, check real-time weather updates, and book flight tickets. Simultaneously, the RESTful API empowers developers to programmatically access data, enabling them to retrieve, create, update, and delete destinations.
+Wanderlust is a comprehensive Travel Destination Platform that combines a user-friendly website and a powerful RESTful API. The website offers an interactive user-friendly interface where you can discover travel destinations, view detailed city information, check real-time weather updates, and book flight tickets. The RESTful API lets developers retrieve travel data and create or update entries to keep the platform fresh and up to date.
 
 ## Explore
 
 The project is now hosted on [Render](https://render.com/) after the expiration of the AWS free tier.<br>
-Please note that it may take up to 1 minute to start when first accessed, as I am using a free instance on Render. <br>
+Please note that it may take a few seconds to start when first accessed, depending on server activity, as I am using a free instance on Render. <br>
 This is due to the instance spinning down after a period of inactivity. Once it's warmed up, the loading times will be faster.
 
 <a href="https://wanderlust-bnh1.onrender.com/api/docs/">
@@ -23,9 +23,8 @@ This is due to the instance spinning down after a period of inactivity. Once it'
 </a>
 <br><br>
 
-**<ins>QUICK NOTE:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br>**
+**<ins>QUICK NOTE:</ins> <br>Even tho the passwords are hashed and salted i recommend you to avoid using your personal informations when you sign up.<br><br>**
 
-*If you don't want to register you can use the following account: Test@yahoo.com - Test1* which is also showcased at the login/register page.<br><br>
 
 ~~Hosted by [AWS](https://aws.amazon.com/) using the following architecture:~~
 - ~~**EC2**~~
