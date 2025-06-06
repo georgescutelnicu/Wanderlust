@@ -798,7 +798,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     border-radius: 3px;
 }
 
-input[type="submit"], #demo {
+input[type="submit"] {
     width: 100%;
     background-color: #69c6ba;
     color: #fff;
@@ -808,12 +808,17 @@ input[type="submit"], #demo {
     cursor: pointer;
 }
 
-input[type="submit"]:hover, #demo:hover {
+input[type="submit"]:hover {
     background-color: #c66995b3;
 }
 
 .input-div {
     margin: 25px auto;
+}
+
+.form-p {
+    text-align: center;
+    font-size: 15px;
 }
 
 .err {

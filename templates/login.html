@@ -33,23 +33,12 @@
                     {{ form.submit() }}
                 </div>
 
-                <div class="input-div">
-                    <button type="button" id="demo">Demo Account</button>
-                </div>
+                <p class="form-p">Don't have an account? <a href="/register">Register </a>now!</p>
 
             </form>
 
         </div>
     </div>
 </section>
-
-<script>
-    document.getElementById("demo").addEventListener("click", function() {
-        const form = document.querySelector("form");
-        form.email.value = "Test@yahoo.com";
-        form.password.value = "Test1";
-        form.submit();
-    });
-</script>
 
 {% include "footer.html" %}
