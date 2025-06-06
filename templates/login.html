@@ -13,11 +13,11 @@
                     {{ form.password.label }} {{ form.password(size=32) }}
                 </div>
 
-                     {% with messages = get_flashed_messages() %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
                         {% if messages %}
-                                {% for message in messages %}
-                                    <p class="err">{{ message }}</p>
-                                {% endfor %}
+                            {% for category, message in messages %}
+                                <p class="{{ 'success' if category == 'success' else 'err' }}">{{ message }}</p>
+                            {% endfor %}
                         {% endif %}
                     {% endwith %}
 

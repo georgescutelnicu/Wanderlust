@@ -92,6 +92,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     api_key = db.Column(db.String(32), unique=True, nullable=True)
+    enabled = db.Column(db.Boolean, default=False)
+    verification_token = db.Column(db.String(64), unique=True, nullable=True)
 
     def generate_api_key(self):
         """

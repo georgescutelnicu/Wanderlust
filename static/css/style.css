@@ -822,6 +822,12 @@ input[type="submit"]:hover, #demo:hover {
     font-weight: 900;
 }
 
+.success {
+    color: green;
+    text-align: center;
+    font-weight: 900;
+}
+
 .remove-button {
     background-color: #c66995;
     margin: 5px 0px;
@@ -973,4 +979,26 @@ input[type="submit"]:hover, #demo:hover {
     .about-title {
         margin-top: 7.5%;
     }
+}
+
+.verify-container {
+    text-align: center;
+    margin: 15%;
+}
+.verify-h {
+    font-family: Arial, sans-serif !important;
+    color: #333;
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+.verify-p {
+    color: #555;
+    font-size: 18px;
+    margin: 10px 0;
+}
+.verify-a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
 }

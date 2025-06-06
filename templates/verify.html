@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="5;url=/login">
+    <title>Redirecting...</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="verify-container">
+        <h1 class="verify-h">{{ message }}</h1>
+        <p class="verify-p">You’ll be redirected in 5 seconds, if not
+            <a class="verify-a" href="{{ url_for('login') }}">click here</a>.</p><br>
+        <img src="{{ url_for('static', filename='img/loading.gif') }}" alt="Loading Gif">
+    </div>
+</body>
+</html>

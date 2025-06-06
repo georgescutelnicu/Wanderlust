@@ -1,25 +1,33 @@
-from flask import Flask, render_template, request, jsonify, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for
 from model import db, Destination, User, DestinationToUser
 from api import app as api_blueprint
 from api import swaggerui_blueprint
 from form import RegistrationForm, LoginForm
 from helper_functions import (get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map,
-                              get_title, get_info)
+                              get_title, get_info, send_verification_email)
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
+from flask_mail import Mail
+import secrets
 import random
 import os
 
 
-# Create Flask application, register blueprints and configure database
+# Create Flask application, register blueprints, configure database and smtp
 app = Flask(__name__)
 app.register_blueprint(api_blueprint, url_prefix='/api')
 app.register_blueprint(swaggerui_blueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['MAIL_SERVER'] = 'smtp.zoho.eu'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 app.json.sort_keys = False
 
+mail = Mail(app)
 db.init_app(app)
 
 # Create and initialize login manager
@@ -187,20 +195,39 @@ def register():
             salt_length=8
         )
 
+        token = secrets.token_hex(32)
+
         new_user = User(
             username=form.username.data,
             email=form.email.data,
             password=hashed_password,
+            verification_token=token
         )
 
         db.session.add(new_user)
         db.session.commit()
 
-        login_user(new_user)
+        send_verification_email(new_user.email, token, app.config['MAIL_USERNAME'], mail)
+        flash("Please check your email to verify your account.", "success")
 
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
     return render_template('register.html', form=form, errors=form.errors, current_user=current_user)
+
+
+@app.route("/verify/<token>")
+def verify_account(token):
+    user = User.query.filter_by(verification_token=token).first()
+
+    if user:
+        user.enabled = True
+        user.verification_token = None
+        db.session.commit()
+        message = "Congratulations, your account has been verified!"
+    else:
+        message = "Sorry, we couldn't verify your account. It may already be verified or the token might be invalid."
+
+    return render_template("verify.html", message=message)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -213,6 +240,9 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if not user or not check_password_hash(user.password, form.password.data):
             flash("Invalid email or password.")
+            return redirect(url_for("login"))
+        if not user.enabled:
+            flash("Your account is not verified.")
             return redirect(url_for("login"))
 
         login_user(user)

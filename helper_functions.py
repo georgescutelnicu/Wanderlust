@@ -1,5 +1,6 @@
-from flask import request, jsonify
+from flask import request, jsonify, url_for
 from flask_paginate import Pagination
+from flask_mail import Message
 from model import Destination, User, db
 import country_converter as coco
 from datetime import datetime
@@ -237,3 +238,30 @@ def require_valid_api_key(func):
 
     decorated_function.__name__ = func.__name__
     return decorated_function
+
+
+def send_verification_email(user_email, token, mail_sender, mail_instance):
+    """
+        Sends a verification email to the specified user with a link to verify their account.
+    
+        Args:
+            user_email (str): The recipient's email address.
+            token (str): The verification token used to generate the verification URL.
+            mail_sender (str): The sender's email address.
+            mail_instance (flask_mail.Mail): An instance of Flask-Mail used to send the email.
+    """
+    link = url_for('verify_account', token=token, _external=True)
+
+    subject = "Wanderlust Email Verification"
+    body = (
+        "Hello,\n\n"
+        "Thank you for registering at Wanderlust! Please verify your "
+        "email address by clicking the link below:\n\n"
+        f"{link}\n\n"
+        "If you did not sign up, you can safely ignore this email.\n\n"
+        "Best regards,\n"
+        "Wanderlust Team"
+    )
+
+    msg = Message(subject=subject, recipients=[user_email], body=body, sender=mail_sender)
+    mail_instance.send(msg)
