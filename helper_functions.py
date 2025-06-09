@@ -126,6 +126,40 @@ def get_info(country):
     return data
 
 
+def get_city_photos(country, city, count=12):
+    """
+        Fetches landscape-oriented photos of landmarks in a specific city and country from Unsplash.
+
+        Args:
+            country (str): The country name to include in the search query.
+            city (str): The city name to include in the search query.
+            count (int, optional): Number of photos to retrieve. Defaults to 12.
+
+        Returns:
+            list of dict: List of photo dictionaries with 'thumb' and 'full' URLs.
+    """
+    api_key = os.environ.get("UNSPLASH_API_KEY")
+    headers = {"Authorization": f"Client-ID {api_key}"}
+    url = "https://api.unsplash.com/search/photos"
+
+    params = {
+        "query": f"{city}, {country}",
+        "per_page": count,
+        "orientation": "landscape"
+    }
+    response = requests.get(url, headers=headers, params=params)
+    data = response.json()
+
+    photos = []
+    for item in data.get("results", []):
+        photos.append({
+            "thumb": item["urls"]["small"],
+            "full": item["urls"]["regular"]
+        })
+
+    return photos
+
+
 def get_map(visited_destinations, planned_to_visit_destinations, is_mobile):
     """
        Generate a choropleth map based on visited and planned-to-visit destinations.

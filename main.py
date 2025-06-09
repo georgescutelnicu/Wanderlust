@@ -4,7 +4,7 @@ from api import app as api_blueprint
 from api import swaggerui_blueprint
 from form import RegistrationForm, LoginForm
 from helper_functions import (get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map,
-                              get_title, get_info, send_verification_email)
+                              get_title, get_info, get_city_photos, send_verification_email)
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 from flask_mail import Mail
@@ -112,6 +112,7 @@ def display_city(city):
     if destination:
         weather = get_weather(city)
         country_info = get_info(destination.country)
+        photos = get_city_photos(destination.country, city)
 
         if current_user.is_authenticated:
 
@@ -132,7 +133,7 @@ def display_city(city):
                                    is_planned_to_visit=planned_to_visit_destination is not None)
 
         return render_template("city.html", destination=destination, weather=weather, country_info=country_info,
-                               current_user=current_user)
+                               photos=photos, current_user=current_user)
 
     return render_template("404.html")
 

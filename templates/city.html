@@ -87,6 +87,25 @@
         </div>
     </section>
 
+    <h1 class="topm mb3" style="text-align:center;">
+        Discover {{ destination.city }} through pictures
+    </h1>
+    <section class="tm-banner pb3">
+        <div class="container">
+            <div class="row gallery-row">
+                {% for photo in photos %}
+                    <div class="col-6 col-sm-4 col-md-3 mb-4">
+                        <img src="{{ photo.thumb }}" data-full="{{ photo.full }}" alt="Photo of {{ destination.city }}"
+                             class="img-fluid gallery-thumb" onclick="showFull(this)">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div id="fullscreen-view" onclick="hideFull()">
+        <img id="fullscreen-img" src="" style="max-width:90%;max-height:90%;border-radius:8px;">
+    </div>
+
     {% if weather %}
 
     <h1 class="topm" style="text-align:center;">
@@ -188,5 +207,13 @@
                 displayFallback();
             });
     });
+
+    function showFull(img) {
+        document.getElementById("fullscreen-img").src = img.dataset.full;
+        document.getElementById("fullscreen-view").style.display = "flex";
+    }
+    function hideFull() {
+        document.getElementById("fullscreen-view").style.display = "none";
+    }
 </script>
 {% include "footer.html" %}
