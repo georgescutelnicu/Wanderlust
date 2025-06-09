@@ -143,7 +143,7 @@ def get_city_photos(country, city, count=12):
     url = "https://api.unsplash.com/search/photos"
 
     params = {
-        "query": f"{city}, {country}",
+        "query": f"landmarks in {city}, {country}",
         "per_page": count,
         "orientation": "landscape"
     }
