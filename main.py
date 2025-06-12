@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for
 from model import db, Destination, User, DestinationToUser
 from api import app as api_blueprint
 from api import swaggerui_blueprint
-from form import RegistrationForm, LoginForm
+from form import RegistrationForm, LoginForm, ResendVerificationForm
 from helper_functions import (get_random_locations_for_continent, get_weather, get_pagination_and_page, get_map,
                               get_title, get_info, get_city_photos, send_verification_email)
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -250,6 +250,26 @@ def login():
         return redirect(url_for("home"))
 
     return render_template("login.html", form=form, errors=form.errors, current_user=current_user)
+
+
+@app.route("/resend-verification", methods=["GET", "POST"])
+def resend_verification():
+    form = ResendVerificationForm()
+
+    if form.validate_on_submit():
+        email = form.email.data
+        user = User.query.filter_by(email=email).first()
+
+        if user and not user.enabled:
+            token = secrets.token_hex(32)
+            user.verification_token = token
+            db.session.commit()
+            send_verification_email(user.email, token, app.config['MAIL_USERNAME'], mail)
+
+        flash("If the email is linked to an unverified account, a new verification email has been sent.")
+        return redirect(url_for("resend_verification"))
+
+    return render_template("resend_verification.html", form=form, errors=form.errors)
 
 
 @app.route("/logout")

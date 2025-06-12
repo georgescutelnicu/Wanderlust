@@ -64,3 +64,18 @@ class LoginForm(FlaskForm):
         DataRequired(message="Password is required."),
     ])
     submit = SubmitField("Log In")
+
+
+class ResendVerificationForm(FlaskForm):
+    """
+        Form for resending account verification email.
+
+        Fields:
+            email (StringField): User's email address, required and must be valid.
+            submit (SubmitField): Submit button to trigger resend.
+    """
+    email = StringField("Email", validators=[
+        DataRequired(message="Email is required."),
+        Email(message="Invalid email address.")
+    ])
+    submit = SubmitField("Resend Verification Email")
