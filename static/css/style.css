@@ -1035,3 +1035,13 @@ input[type="submit"]:hover {
     text-decoration: none;
     font-weight: bold;
 }
+
+.short-content {
+  min-height: calc(100vh - 99px - 119px) !important;
+}
+
+@media (max-width: 991px) {
+  .short-content {
+    min-height: calc(100vh - 99px) !important;
+  }
+}
