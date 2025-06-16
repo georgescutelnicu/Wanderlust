@@ -977,7 +977,7 @@ input[type="submit"]:hover {
 }
 
 .about-banner {
-    background: url('https://discover-destinations.com/wp-content/uploads/2018/06/ryan-waring-366060-unsplash.jpg') bottom;
+    background: url('/static/img/about.png') bottom;
     height: 250px;
     background-size: cover;
     display: flex;
