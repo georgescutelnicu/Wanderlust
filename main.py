@@ -130,7 +130,7 @@ def display_city(city):
 
             return render_template("city.html", destination=destination, weather=weather, country_info=country_info,
                                    current_user=current_user, is_visited=visited_destination is not None,
-                                   is_planned_to_visit=planned_to_visit_destination is not None)
+                                   is_planned_to_visit=planned_to_visit_destination is not None, photos=photos)
 
         return render_template("city.html", destination=destination, weather=weather, country_info=country_info,
                                photos=photos, current_user=current_user)
