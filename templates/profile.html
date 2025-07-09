@@ -5,7 +5,13 @@
         <div class="row">
             <div class="col-xs-12 mx-auto tm-about-text-wrap text-center api-key">
                 <h2 class="text-uppercase mb-4">API Key</h2>
-                <p class="mb-4" style="font-size: medium;">{{ current_user.api_key }} </p>
+                <div class="mb-4" style="font-size: medium;">
+                    <span id="api-key" style="letter-spacing: 2px;">••••••••••••••••</span>
+                    <button onclick="revealApiKey()" class="btn btn-sm ml-2"
+                            style="background-color: #fff; color: #000; cursor: pointer;">
+                        Show
+                    </button>
+                </div>
                 <a href="/generate_api_key" class="text-uppercase btn-primary tm-btn">Generate new API key</a>
             </div>
         </div>
@@ -145,5 +151,14 @@
 
 </div>
 </div>
+
+<script>
+    function revealApiKey() {
+        const keySpan = document.getElementById("api-key");
+        const button = event.target;
+        keySpan.innerText = "{{ current_user.api_key }}";
+        button.remove();
+    }
+</script>
 
 {% include "footer.html" %}
