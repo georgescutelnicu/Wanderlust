@@ -24,7 +24,6 @@ app.config['MAIL_SENDER'] = os.environ.get('MAIL_SENDER')
 resend.api_key = os.environ.get("RESEND_API_KEY")
 app.json.sort_keys = False
 
-mail = Mail(app)
 db.init_app(app)
 
 # Create and initialize login manager
