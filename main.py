@@ -10,6 +10,7 @@ from flask_login import login_user, LoginManager, login_required, current_user, 
 from flask_mail import Mail
 import secrets
 import random
+import resend
 import os
 
 
@@ -20,11 +21,8 @@ app.register_blueprint(swaggerui_blueprint)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-app.config['MAIL_SERVER'] = 'smtp.zoho.eu'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
-app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
+app.config['MAIL_SENDER'] = os.environ.get('MAIL_SENDER')
+resend.api_key = os.environ.get("RESEND_API_KEY")
 app.json.sort_keys = False
 
 mail = Mail(app)
@@ -208,7 +206,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        send_verification_email(new_user.email, token, app.config['MAIL_USERNAME'], mail)
+        send_verification_email(new_user.email, token, app.config['MAIL_SENDER'])
         flash("Please check your email to verify your account.", "success")
 
         return redirect(url_for('login'))
@@ -264,7 +262,7 @@ def resend_verification():
             token = secrets.token_hex(32)
             user.verification_token = token
             db.session.commit()
-            send_verification_email(user.email, token, app.config['MAIL_USERNAME'], mail)
+            send_verification_email(new_user.email, token, app.config['MAIL_SENDER'])
 
         flash("If the email is linked to an unverified account, a new verification email has been sent.")
         return redirect(url_for("resend_verification"))

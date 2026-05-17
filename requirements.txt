@@ -1,6 +1,5 @@
 Flask==2.2.5
 Flask-Login==0.6.2
-Flask-Mail==0.10.0
 flask-paginate==2023.10.8
 flask_sqlalchemy==3.0.5
 flask-swagger-ui==4.11.1
@@ -17,3 +16,4 @@ gunicorn==21.2.0
 country-converter==1.2
 plotly==5.18.0
 plotly-express==0.4.1
+resend==2.30.1

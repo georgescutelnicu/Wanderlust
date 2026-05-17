@@ -1,6 +1,5 @@
 from flask import request, jsonify, url_for
 from flask_paginate import Pagination
-from flask_mail import Message
 from model import Destination, User, db
 import country_converter as coco
 from datetime import datetime
@@ -8,6 +7,7 @@ import plotly.express as px
 import plotly.offline as pyo
 import requests
 import random
+import resend
 import os
 
 
@@ -274,28 +274,28 @@ def require_valid_api_key(func):
     return decorated_function
 
 
-def send_verification_email(user_email, token, mail_sender, mail_instance):
+def send_verification_email(user_email, token, mail_sender):
     """
-        Sends a verification email to the specified user with a link to verify their account.
-    
-        Args:
-            user_email (str): The recipient's email address.
-            token (str): The verification token used to generate the verification URL.
-            mail_sender (str): The sender's email address.
-            mail_instance (flask_mail.Mail): An instance of Flask-Mail used to send the email.
+    Sends a verification email using Resend API.
     """
     link = url_for('verify_account', token=token, _external=True)
 
     subject = "Wanderlust Email Verification"
-    body = (
-        "Hello,\n\n"
-        "Thank you for registering at Wanderlust! Please verify your "
-        "email address by clicking the link below:\n\n"
-        f"{link}\n\n"
-        "If you did not sign up, you can safely ignore this email.\n\n"
-        "Best regards,\n"
-        "Wanderlust Team"
-    )
+    html_body = f"""
+    <p>Hello,</p>
+    <p>Thank you for registering at Wanderlust! Please verify your email address by clicking the link below:</p>
+    <p><a href="{link}" target="_blank">Verify Email Address</a></p>
+    <p>If you did not sign up, you can safely ignore this email.</p>
+    <br>
+    <p>Best regards,<br>Wanderlust Team</p>
+    """
 
-    msg = Message(subject=subject, recipients=[user_email], body=body, sender=mail_sender)
-    mail_instance.send(msg)
+    try:
+        resend.Emails.send({
+            "from": mail_sender,
+            "to": [user_email],
+            "subject": subject,
+            "html": html_body
+        })
+    except Exception as e:
+        print(f"Failed to send email via Resend: {e}")
