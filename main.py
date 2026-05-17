@@ -7,7 +7,6 @@ from helper_functions import (get_random_locations_for_continent, get_weather, g
                               get_title, get_info, get_city_photos, send_verification_email)
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
-from flask_mail import Mail
 import secrets
 import random
 import resend
