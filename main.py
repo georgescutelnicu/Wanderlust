@@ -198,14 +198,15 @@ def register():
             username=form.username.data,
             email=form.email.data,
             password=hashed_password,
-            verification_token=token
+            verification_token=token,
+            enabled=True
         )
 
         db.session.add(new_user)
         db.session.commit()
 
-        send_verification_email(new_user.email, token, app.config['MAIL_SENDER'])
-        flash("Please check your email to verify your account.", "success")
+        #send_verification_email(new_user.email, token, app.config['MAIL_SENDER'])
+        #flash("Please check your email to verify your account.", "success")
 
         return redirect(url_for('login'))
 
@@ -248,24 +249,24 @@ def login():
     return render_template("login.html", form=form, errors=form.errors, current_user=current_user)
 
 
-@app.route("/resend-verification", methods=["GET", "POST"])
-def resend_verification():
-    form = ResendVerificationForm()
-
-    if form.validate_on_submit():
-        email = form.email.data
-        user = User.query.filter_by(email=email).first()
-
-        if user and not user.enabled:
-            token = secrets.token_hex(32)
-            user.verification_token = token
-            db.session.commit()
-            send_verification_email(new_user.email, token, app.config['MAIL_SENDER'])
-
-        flash("If the email is linked to an unverified account, a new verification email has been sent.")
-        return redirect(url_for("resend_verification"))
-
-    return render_template("resend_verification.html", form=form, errors=form.errors)
+# @app.route("/resend-verification", methods=["GET", "POST"])
+# def resend_verification():
+#     form = ResendVerificationForm()
+#
+#     if form.validate_on_submit():
+#         email = form.email.data
+#         user = User.query.filter_by(email=email).first()
+#
+#         if user and not user.enabled:
+#             token = secrets.token_hex(32)
+#             user.verification_token = token
+#             db.session.commit()
+#             send_verification_email(new_user.email, token, app.config['MAIL_SENDER'])
+#
+#         flash("If the email is linked to an unverified account, a new verification email has been sent.")
+#         return redirect(url_for("resend_verification"))
+#
+#     return render_template("resend_verification.html", form=form, errors=form.errors)
 
 
 @app.route("/logout")
